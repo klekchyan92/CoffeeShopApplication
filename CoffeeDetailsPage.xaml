@@ -1,0 +1,138 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CoffeeShopApplication.CoffeeDetailsPage"
+             BackgroundColor="{Binding CoffeeBackgroundColor}">
+
+    <!-- Main Layout -->
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- Top Section: Coffee Info + QR Code -->
+        <StackLayout Padding="15,20">
+            <!-- Coffee Name and Address -->
+            <StackLayout Orientation="Horizontal" Spacing="15">
+                <Label Text="PREPA"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="Black" 
+                       VerticalOptions="Center" />
+
+                <Label Text="21 Tumanyan St"
+                       FontSize="16"
+                       TextColor="Gray"
+                       VerticalOptions="Center" />
+
+                <Image Source="phone_icon.png"
+                       WidthRequest="25"
+                       HeightRequest="25"
+                       VerticalOptions="Center" />
+            </StackLayout>
+
+            <!-- Points and QR Code -->
+            <StackLayout Orientation="Horizontal" Padding="0,20" Spacing="15">
+                <Label Text="414"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="#F4A825" />
+
+                <Label Text="Points Available"
+                       FontSize="14"
+                       TextColor="Gray" />
+
+                <Image Source="qr_code.png" 
+                       WidthRequest="50" 
+                       HeightRequest="50" />
+            </StackLayout>
+
+            <!-- Search Bar -->
+            <SearchBar Placeholder="Search..." 
+                       BackgroundColor="#F4F4F4"
+                       HorizontalOptions="Fill"
+                       HeightRequest="40" />
+        </StackLayout>
+
+        <!-- Coffee Menu Section -->
+        <ScrollView Grid.Row="1" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <!-- Menu Header -->
+                <StackLayout Orientation="Horizontal" Spacing="15">
+                    <Button Text="Beverages" 
+                            BackgroundColor="#F4A825"
+                            TextColor="White" 
+                            CornerRadius="25" 
+                            HeightRequest="40" 
+                            HorizontalOptions="Fill" />
+                    <Button Text="Bowls" 
+                            BackgroundColor="#F4A825"
+                            TextColor="White"
+                            CornerRadius="25"
+                            HeightRequest="40" 
+                            HorizontalOptions="Fill" />
+                    <Button Text="Breakfast" 
+                            BackgroundColor="#F4A825"
+                            TextColor="White" 
+                            CornerRadius="25" 
+                            HeightRequest="40" 
+                            HorizontalOptions="Fill" />
+                </StackLayout>
+
+                <!-- Coffee Options (Repeatable) -->
+                <Frame CornerRadius="15" HasShadow="True" HorizontalOptions="Start" BackgroundColor="White" WidthRequest="160">
+                    <VerticalStackLayout Spacing="5">
+
+                        <!-- 📷 Image with size labels overlayed -->
+                        <Grid>
+                            <Image Source="cappucino.png"
+                   Aspect="AspectFill"
+                   HeightRequest="120"
+                   WidthRequest="160"/>
+
+                            <!-- Sizes overlaid on bottom left -->
+                            <HorizontalStackLayout HorizontalOptions="Start"
+                                   VerticalOptions="End"
+                                   Padding="10"
+                                   Spacing="5">
+                            </HorizontalStackLayout>
+                        </Grid>
+
+                        <!-- 🏷️ Coffee name + price + add button -->
+                        <Grid ColumnDefinitions="*,Auto" Padding="5,0">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="Cappuccino" FontSize="14" FontAttributes="Bold" />
+                                <Label Text="2$" FontSize="13" TextColor="Gray" />
+                            </VerticalStackLayout>
+
+                            <!-- ➕ Button -->
+                            <Frame BackgroundColor="#CB8A58"
+                   CornerRadius="12"
+                   HeightRequest="24"
+                   WidthRequest="24"
+                   Padding="0"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End">
+                                <Label Text="+" 
+                       FontSize="18"
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+                            </Frame>
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Frame>
+
+
+
+                <!-- Repeat for other coffee items... -->
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Navigation Bar -->
+        <Grid Grid.Row="2" Padding="10" ColumnDefinitions="*,*,*,*,*">
+            <ImageButton Source="home_icon.png" />
+            <ImageButton Source="favourite_icon.png" Grid.Column="1" />
+            <ImageButton Source="cart_icon.png" Grid.Column="2" />
+            <ImageButton Source="profile_icon.png" Grid.Column="3" />
+        </Grid>
+
+    </Grid>
+</ContentPage>
