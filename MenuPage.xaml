@@ -1,157 +1,190 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:CoffeeShopApplication"
-             x:Class="CoffeeShopApplication.MenuPage"
-             BackgroundColor="{Binding Theme.BackgroundColor}">
+<ContentPage
+    x:Class="CoffeeShopApplication.MenuPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:y="CoffeeShopApplication.Controls"
+    xmlns:local="clr-namespace:CoffeeShopApplication">
+    <!--BackgroundColor="{Binding ThemeBackgroundColor}">-->
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <local:CategorySelectedBackgroundConverter x:Key="CategorySelectedBackgroundConverter"/>
-            <local:CategorySelectedTextColorConverter x:Key="CategorySelectedTextColorConverter"/>
+            <local:CategorySelectedBackgroundConverter x:Key="CategorySelectedBackgroundConverter" />
+            <local:CategorySelectedTextColorConverter x:Key="CategorySelectedTextColorConverter" />
         </ResourceDictionary>
-        <Style TargetType="Label">
+        <!--<Style TargetType="Label">
             <Setter Property="TextColor" Value="{Binding Theme.TextColor}" />
-        </Style>
+        </Style>-->
     </ContentPage.Resources>
     <Shell.TitleView>
-            <Image Source="prepa.png"
-               HeightRequest="50"
-               WidthRequest="80" Margin="-10,0,0,0"
-               HorizontalOptions="Start"
-               VerticalOptions="Center"/>
+        <Image
+            Margin="-10,0,0,0"
+            HeightRequest="50"
+            HorizontalOptions="Start"
+            Source="prepa.png"
+            VerticalOptions="Center"
+            WidthRequest="80" />
     </Shell.TitleView>
 
     <ScrollView VerticalScrollBarVisibility="Never">
         <Grid RowDefinitions="Auto, Auto, Auto, *">
-            <VerticalStackLayout Padding="20" Spacing="10" Grid.Row="1">
+            <VerticalStackLayout
+                Grid.Row="1"
+                Padding="20"
+                Spacing="10">
                 <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Center">
-                    <Image Source="locationfilled.png"
-                           HeightRequest="24"
-                           WidthRequest="24"
-                           VerticalOptions="Center"
-                           Grid.Column="0"/>
+                    <Image
+                        Grid.Column="0"
+                        HeightRequest="24"
+                        Source="locationfilled.png"
+                        VerticalOptions="Center"
+                        WidthRequest="24" />
 
-                    <Label Text="21 Tumanyan St"
-                           FontSize="18"
-                           Margin="8,0,0,0"
-                           VerticalOptions="Center"
-                           Grid.Column="1"/>
+                    <Label
+                        Grid.Column="1"
+                        Margin="8,0,0,0"
+                        FontSize="18"
+                        Text="21 Tumanyan St"
+                        VerticalOptions="Center" />
 
-                    <Image Source="phone.png"
-                           HeightRequest="24"
-                           WidthRequest="24"
-                           VerticalOptions="Center"
-                           Grid.Column="2"/>
+                    <Image
+                        Grid.Column="2"
+                        HeightRequest="24"
+                        Source="phone.png"
+                        VerticalOptions="Center"
+                        WidthRequest="24" />
                 </Grid>
-                <Border StrokeThickness="1"
-            BackgroundColor="#F4F4F4"
-            StrokeShape="RoundRectangle 50"
-            HeightRequest="50"
-            VerticalOptions="Center">
-                    <SearchBar Placeholder="Search .."
-                       BackgroundColor="White"
-                       CancelButtonColor="#CB8A58"
-                       FontSize="14"
-                       HeightRequest="50"
-                       HorizontalOptions="Fill"
-                       VerticalOptions="Center" />
+                <Border
+                    BackgroundColor="#F4F4F4"
+                    HeightRequest="50"
+                    StrokeShape="RoundRectangle 50"
+                    StrokeThickness="1"
+                    VerticalOptions="Center">
+                    <SearchBar
+                        BackgroundColor="White"
+                        CancelButtonColor="#CB8A58"
+                        FontSize="14"
+                        HeightRequest="50"
+                        HorizontalOptions="Fill"
+                        Placeholder="Search .."
+                        VerticalOptions="Center" />
                 </Border>
             </VerticalStackLayout>
 
-            <!-- Row 2: POINTS -->
-            <Border Grid.Row="2"
-                    Stroke="{Binding Theme.PrimaryColor}" 
-                    StrokeThickness="0"
-                    StrokeShape="RoundRectangle 20"
-                    Padding="0"
-                    Margin="20,0"
-                    BackgroundColor="Transparent"
-                    HeightRequest="120">
+            <!--  Row 2: POINTS  -->
+            <Border
+                Grid.Row="2"
+                Margin="20,0"
+                Padding="0"
+                BackgroundColor="Transparent"
+                HeightRequest="120"
+                Stroke="{Binding Theme.PrimaryColor}"
+                StrokeShape="RoundRectangle 20"
+                StrokeThickness="0">
                 <Grid>
-                    <!-- Фон картинки -->
-                    <Image Source="prepabackground.png"
-                           Aspect="AspectFill"
-                           Opacity="1"/>
+                    <!--  Фон картинки  -->
+                    <Image
+                        Aspect="AspectFill"
+                        Opacity="1"
+                        Source="prepabackground.png" />
 
-                    <!-- Контент: очки + qr -->
-                    <Grid ColumnDefinitions="*,Auto"
-                          Padding="10">
-                        <VerticalStackLayout Spacing="2"
-                                             VerticalOptions="Start">
-                            <Label Text="414"
-                                   TextColor="White"
-                                   FontAttributes="Bold"
-                                   FontSize="28"/>
-                            <Label Text="Points Available"
-                                   TextColor="White"
-                                   FontSize="16"/>
+                    <!--  Контент: очки + qr  -->
+                    <Grid Padding="10" ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="2" VerticalOptions="Start">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="28"
+                                Text="414"
+                                TextColor="White" />
+                            <Label
+                                FontSize="16"
+                                Text="Points Available"
+                                TextColor="White" />
                         </VerticalStackLayout>
 
-                        <Image Source="qr.jpg"
-                               HeightRequest="80"
-                               WidthRequest="80"
-                               VerticalOptions="Start"
-                               HorizontalOptions="End"
-                               Grid.Column="1"/>
+                        <Image
+                            Grid.Column="1"
+                            HeightRequest="80"
+                            HorizontalOptions="End"
+                            Source="qr.jpg"
+                            VerticalOptions="Start"
+                            WidthRequest="80" />
                     </Grid>
                 </Grid>
             </Border>
 
-            <!-- Row 3: MENU -->
-            <VerticalStackLayout Padding="20" Spacing="10" Grid.Row="3">
+            <!--  Row 3: MENU  -->
+            <VerticalStackLayout
+                Grid.Row="3"
+                Padding="20"
+                Spacing="10">
 
-                <Label Text="Menu" FontAttributes="Bold" FontSize="24"/>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    Text="Menu" />
 
-                <!-- Categories -->
-                <FlexLayout x:Name="CategoryFlexLayout"
-                            Direction="Row"
-                            Wrap="Wrap"
-                            AlignItems="Center"
-                            JustifyContent="Start"
-                            Margin="0,10,0,10">
+                <!--  Categories  -->
+                <FlexLayout
+                    x:Name="CategoryFlexLayout"
+                    Margin="0,10,0,10"
+                    AlignItems="Center"
+                    Direction="Row"
+                    JustifyContent="Start"
+                    Wrap="Wrap">
                     <BindableLayout.ItemsSource>
                         <Binding Path="Categories" />
                     </BindableLayout.ItemsSource>
 
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <Border Stroke="Gray"
-                                    StrokeThickness="1"
-                                    BackgroundColor="{Binding ., Converter={StaticResource CategorySelectedBackgroundConverter}, ConverterParameter={x:Reference CategoryFlexLayout}}"
-                                    Padding="8"
-                                    Margin="3"
-                                    HeightRequest="40"
-                                    StrokeShape="RoundRectangle 20">
-                                <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                            <Border
+                                Margin="3"
+                                Padding="8"
+                                BackgroundColor="{Binding ., Converter={StaticResource CategorySelectedBackgroundConverter}, ConverterParameter={x:Reference CategoryFlexLayout}}"
+                                HeightRequest="40"
+                                Stroke="Gray"
+                                StrokeShape="RoundRectangle 20"
+                                StrokeThickness="1">
+                                <Grid HorizontalOptions="Center" VerticalOptions="Center">
                                     <Grid>
-                                        <!-- Иконка + текст -->
-                                        <HorizontalStackLayout x:Name="LayoutWithIcon" Spacing="5" VerticalOptions="Center" HorizontalOptions="Center">
-                                            <Image Source="{Binding Icon}"
-                                                   HeightRequest="24"
-                                                   WidthRequest="24"
-                                                   VerticalOptions="Center"/>
-                                            <Label Text="{Binding Name}"
-                                                   VerticalOptions="Center"
-                                                   FontSize="14"
-                                                   TextColor="{Binding ., Converter={StaticResource CategorySelectedTextColorConverter}, ConverterParameter={x:Reference CategoryFlexLayout}}"/>
+                                        <!--  Иконка + текст  -->
+                                        <HorizontalStackLayout
+                                            x:Name="LayoutWithIcon"
+                                            HorizontalOptions="Center"
+                                            Spacing="5"
+                                            VerticalOptions="Center">
+                                            <Image
+                                                HeightRequest="24"
+                                                Source="{Binding Icon}"
+                                                VerticalOptions="Center"
+                                                WidthRequest="24" />
+                                            <Label
+                                                FontSize="14"
+                                                Text="{Binding Name}"
+                                                TextColor="{Binding ., Converter={StaticResource CategorySelectedTextColorConverter}, ConverterParameter={x:Reference CategoryFlexLayout}}"
+                                                VerticalOptions="Center" />
                                         </HorizontalStackLayout>
 
-                                        <!-- Только текст -->
-                                        <Label x:Name="LayoutWithoutIcon"
-                                               Text="{Binding Name}"
-                                               VerticalOptions="Center"
-                                               HorizontalOptions="Center"
-                                               HorizontalTextAlignment="Center"
-                                               FontSize="14"
-                                               TextColor="{Binding ., Converter={StaticResource CategorySelectedTextColorConverter}, ConverterParameter={x:Reference CategoryFlexLayout}}"
-                                               IsVisible="False"/>
+                                        <!--  Только текст  -->
+                                        <Label
+                                            x:Name="LayoutWithoutIcon"
+                                            FontSize="14"
+                                            HorizontalOptions="Center"
+                                            HorizontalTextAlignment="Center"
+                                            IsVisible="False"
+                                            Text="{Binding Name}"
+                                            TextColor="{Binding ., Converter={StaticResource CategorySelectedTextColorConverter}, ConverterParameter={x:Reference CategoryFlexLayout}}"
+                                            VerticalOptions="Center" />
                                     </Grid>
 
                                     <Grid.Triggers>
-                                        <DataTrigger TargetType="Grid" Binding="{Binding Icon}" Value="{x:Null}">
-                                            <Setter TargetName="LayoutWithIcon" Property="IsVisible" Value="False"/>
-                                            <Setter TargetName="LayoutWithoutIcon" Property="IsVisible" Value="True"/>
+                                        <DataTrigger
+                                            Binding="{Binding Icon}"
+                                            TargetType="Grid"
+                                            Value="{x:Null}">
+                                            <Setter TargetName="LayoutWithIcon" Property="IsVisible" Value="False" />
+                                            <Setter TargetName="LayoutWithoutIcon" Property="IsVisible" Value="True" />
                                         </DataTrigger>
                                     </Grid.Triggers>
                                 </Grid>
@@ -160,57 +193,84 @@
                     </BindableLayout.ItemTemplate>
                 </FlexLayout>
 
-                <!-- Products -->
-                <CollectionView ItemsSource="{Binding MenuItems}"
-                                Margin="0"
-                                SelectionMode="None">
+                <!--  Products  -->
+                <CollectionView
+                    Margin="0"
+                    ItemsSource="{Binding MenuItems}"
+                    SelectionMode="None">
                     <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical"
-                                         Span="2"
-                                         HorizontalItemSpacing="5"
-                                         VerticalItemSpacing="5" />
+                        <GridItemsLayout
+                            HorizontalItemSpacing="5"
+                            Orientation="Vertical"
+                            Span="2"
+                            VerticalItemSpacing="5" />
                     </CollectionView.ItemsLayout>
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Border Stroke="#E5E5E5"
-                                    StrokeThickness="1"
-                                    StrokeShape="RoundRectangle 20"
-                                    BackgroundColor="#F9F9F9"
-                                    Margin="5"
-                                    Padding="5"
-                                    HorizontalOptions="Center"
-                                    WidthRequest="160">
+                            <Border
+                                Margin="5"
+                                Padding="5"
+                                BackgroundColor="#F9F9F9"
+                                BindingContext="{Binding .}"
+                                HorizontalOptions="Center"
+                                Stroke="#E5E5E5"
+                                StrokeShape="RoundRectangle 20"
+                                StrokeThickness="1"
+                                WidthRequest="160">
                                 <VerticalStackLayout Spacing="5">
-                                    <Image Source="{Binding Image}"
-                                           Aspect="AspectFit"
-                                           HeightRequest="120"
-                                           WidthRequest="160"/>
 
+                                    <!--  Image with Favorite Icon Overlay  -->
+                                    <Grid HeightRequest="120" WidthRequest="160">
+                                        <Image
+                                            Aspect="AspectFit"
+                                            HeightRequest="120"
+                                            Source="{Binding Image}"
+                                            WidthRequest="160" />
+
+                                        <Image
+                                            Margin="9"
+                                            HeightRequest="24"
+                                            HorizontalOptions="End"
+                                            Source="{Binding FavoriteImage}"
+                                            VerticalOptions="Start"
+                                            WidthRequest="24">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding ToggleFavoriteCommand}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </Grid>
+
+                                    <!--  Name, Price, Add Button  -->
                                     <Grid Padding="10" ColumnDefinitions="*,Auto">
                                         <VerticalStackLayout Grid.Column="0" Spacing="2">
-                                            <Label Text="{Binding Name}"
-                                                   FontSize="16"
-                                                   FontAttributes="Bold"
-                                                   TextColor="Black" />
-                                            <Label Text="{Binding Price, StringFormat='{}{0}$'}"
-                                                   FontSize="14"
-                                                   TextColor="Gray" />
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="16"
+                                                Text="{Binding Name}"
+                                                TextColor="Black" />
+                                            <Label
+                                                FontSize="14"
+                                                Text="{Binding Price,StringFormat='{}{0}$'}"
+                                                TextColor="Gray" />
                                         </VerticalStackLayout>
 
-                                        <Border BackgroundColor="#CB8A58"
-                                                Stroke="Transparent"
-                                                StrokeShape="RoundRectangle 12"
-                                                HeightRequest="30"
-                                                WidthRequest="30"
-                                                VerticalOptions="Center"
-                                                HorizontalOptions="End"
-                                                Padding="0">
-                                            <Label Text="+" 
-                                                   FontSize="20"
-                                                   TextColor="White"
-                                                   HorizontalOptions="Center"
-                                                   VerticalOptions="Center" />
+                                        <Border
+                                            Grid.Column="2"
+                                            Padding="0"
+                                            BackgroundColor="#CB8A58"
+                                            HeightRequest="30"
+                                            HorizontalOptions="End"
+                                            Stroke="Transparent"
+                                            StrokeShape="RoundRectangle 12"
+                                            VerticalOptions="Center"
+                                            WidthRequest="30">
+                                            <Label
+                                                FontSize="20"
+                                                HorizontalOptions="Center"
+                                                Text="+"
+                                                TextColor="White"
+                                                VerticalOptions="Center" />
                                         </Border>
                                     </Grid>
                                 </VerticalStackLayout>
@@ -218,10 +278,7 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-
             </VerticalStackLayout>
-
         </Grid>
     </ScrollView>
-
 </ContentPage>
