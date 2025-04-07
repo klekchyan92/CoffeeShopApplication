@@ -1,0 +1,69 @@
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CoffeeShopApplication.Controls.BottomNavBar"
+             x:Name="Root">
+
+    <Grid Padding="10,5"
+          ColumnDefinitions="*,*,*,*,*"
+          BackgroundColor="White">
+
+        <!-- Home -->
+        <VerticalStackLayout HorizontalOptions="Center" Spacing="2" Grid.Column="0">
+            <ImageButton Source="{Binding HomeIcon, Source={x:Reference Root}}"
+                         Clicked="OnHomeClicked"
+                         HeightRequest="24"
+                         WidthRequest="24" />
+            <Label Text="Home"
+                   FontSize="10"
+                   TextColor="{Binding HomeColor, Source={x:Reference Root}}"
+                   HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+        <!-- Favourite -->
+        <VerticalStackLayout HorizontalOptions="Center" Spacing="2" Grid.Column="1">
+            <ImageButton Source="{Binding FavouriteIcon, Source={x:Reference Root}}"
+                         Clicked="OnFavouriteClicked"
+                         HeightRequest="24"
+                         WidthRequest="24" />
+            <Label Text="Favourite"
+                   FontSize="10"
+                   TextColor="{Binding FavouriteColor, Source={x:Reference Root}}" />
+        </VerticalStackLayout>
+
+        <!-- Help -->
+        <VerticalStackLayout HorizontalOptions="Center" Spacing="2" Grid.Column="2">
+            <ImageButton Source="{Binding HelpIcon, Source={x:Reference Root}}"
+                         Clicked="OnHelpClicked"
+                         HeightRequest="48"
+                         WidthRequest="48"
+                         BackgroundColor="#CB8A58"
+                         CornerRadius="24" />
+            <Label Text="Help"
+                   FontSize="10"
+                   TextColor="#CB8A58" />
+        </VerticalStackLayout>
+
+        <!-- Cart -->
+        <VerticalStackLayout HorizontalOptions="Center" Spacing="2" Grid.Column="3">
+            <ImageButton Source="{Binding CartIcon, Source={x:Reference Root}}"
+                         Clicked="OnCartClicked"
+                         HeightRequest="24"
+                         WidthRequest="24" />
+            <Label Text="Cart"
+                   FontSize="10"
+                   TextColor="{Binding CartColor, Source={x:Reference Root}}" />
+        </VerticalStackLayout>
+
+        <!-- Profile -->
+        <VerticalStackLayout HorizontalOptions="Center" Spacing="2" Grid.Column="4">
+            <ImageButton Source="{Binding ProfileIcon, Source={x:Reference Root}}"
+                         Clicked="OnProfileClicked"
+                         HeightRequest="24"
+                         WidthRequest="24" />
+            <Label Text="Profile"
+                   FontSize="10"
+                   TextColor="{Binding ProfileColor, Source={x:Reference Root}}" />
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentView>

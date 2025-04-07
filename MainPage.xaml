@@ -1,81 +1,102 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CoffeeShopApplication.MainPage">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CoffeeShopApplication.MainPage"
+    Shell.NavBarIsVisible="False"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="White">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Image
-                Source="topimage.png"
-                HeightRequest="185"
-                Aspect="AspectFill"
-                SemanticProperties.Description="dot net bot in a hovercraft number nine" />
-            <Label
-                Text="Welcome Back" FontSize="36" FontAttributes="Bold"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
-            <Label
-                Text="Login to your account" FontSize="21"
-                Style="{StaticResource SubHeadline}" Opacity="0.6"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
-            <Label Text="Name" FontSize="14" TextColor="Black" />
-            <Border Stroke="#DDDDDD"
-            StrokeThickness="1"
-            StrokeShape="RoundRectangle 25"
-            BackgroundColor="White"
-            HeightRequest="50">
-                <Entry Placeholder="Enter your name"
-               BackgroundColor="Transparent"
-               TextColor="Black" />
-            </Border>
-            <Label Text="Phone" FontSize="14" TextColor="Black" />
-            <Border Stroke="#DDDDDD"
-            StrokeThickness="1"
-            StrokeShape="RoundRectangle 25"
-            BackgroundColor="White"
-            HeightRequest="50">
-                <Entry Placeholder="Enter your phone"
-               Keyboard="Telephone"
-               BackgroundColor="Transparent"
-               TextColor="Black"/>
-            </Border>
-            <!--<StackLayout>
-                <VerticalStackLayout>
-                    <Label Text="Name" />
-                    <Entry Placeholder="Enter your name"  />
-                </VerticalStackLayout>
-                <VerticalStackLayout>
-                    <Label Text="Phone" />
-                    <Entry Placeholder="Enter your Phone" />
-                </VerticalStackLayout>
-            </StackLayout>-->
-            <Button
-                x:Name="CounterBtn"
-                Text="Login" 
-                    CornerRadius="25"
+    <Grid>
+        <!-- Фон сверху -->
+        <Image Source="signin_top.png"
+               Aspect="AspectFill"
+               HorizontalOptions="Fill"
+               VerticalOptions="Start"
+               HeightRequest="250" />
 
-                BackgroundColor="#CB8A58"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
-            <Button
-                x:Name="CounterBtn1"
-                BackgroundColor="#CB8A58"
-                Text="Register" 
-                    CornerRadius="25"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
-            <Image
-                Source="bottomimage.png"
-                HeightRequest="185"
-                Aspect="AspectFill"
-                SemanticProperties.Description="dot net bot in a hovercraft number nine" />
-        </VerticalStackLayout>
-    </ScrollView>
+        <!-- Фон снизу -->
+        <Image Source="signin_bottom.png"
+               Aspect="AspectFill"
+               HorizontalOptions="Fill"
+               VerticalOptions="End"
+               HeightRequest="120" />
+
+        <!-- Контент -->
+        <ScrollView>
+            <VerticalStackLayout Padding="30" Spacing="20" VerticalOptions="Center">
+                <!-- Заголовки -->
+                <StackLayout Spacing="5">
+                    <Label Text="Welcome back!"
+                           FontSize="32"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           TextColor="Black"/>
+                    <Label Text="Login to your account"
+                           FontSize="18"
+                           TextColor="Gray"
+                           HorizontalOptions="Center"/>
+                </StackLayout>
+
+                <!-- Name -->
+                <StackLayout>
+                    <Label Text="Name" FontSize="14" TextColor="Black"/>
+                    <Border Stroke="#DDDDDD"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 25"
+                            BackgroundColor="White"
+                            Margin="0,5,0,0">
+                        <Entry Placeholder="Enter your name"
+                               BackgroundColor="Transparent"
+                               TextColor="Black"
+                               Margin="10,0"/>
+                    </Border>
+                </StackLayout>
+
+                <!-- Phone -->
+                <StackLayout>
+                    <Label Text="Phone" FontSize="14" TextColor="Black"/>
+                    <Border Stroke="#DDDDDD"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 25"
+                            BackgroundColor="White"
+                            Margin="0,5,0,0">
+                        <Entry Placeholder="Enter your phone"
+                               Keyboard="Telephone"
+                               BackgroundColor="Transparent"
+                               TextColor="Black"
+                               Margin="10,0"/>
+                    </Border>
+                </StackLayout>
+
+                <!-- Кнопка Login -->
+                <Button Text="Login"
+                        Margin="0,30,0,0"
+                        CornerRadius="25"
+                        HeightRequest="50"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        Clicked="OnLoginClicked">
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#CB8A58" Offset="0.0" />
+                            <GradientStop Color="#562B1A" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+                <!-- Кнопка Register -->
+                <Button Text="Register"
+                        Margin="0,6,0,12"
+                        CornerRadius="25"
+                        HeightRequest="50"
+                        BackgroundColor="Transparent"
+                        BorderColor="#CB8A58"
+                        BorderWidth="1"
+                        TextColor="#CB8A58"
+                        Clicked="OnRegisterClicked"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 
 </ContentPage>
