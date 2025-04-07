@@ -16,10 +16,11 @@ public partial class BottomNavBar : ContentView
         CartColor = tab == "Cart" ? Color.FromArgb("#CB8A58") : Colors.Gray;
         ProfileColor = tab == "Profile" ? Color.FromArgb("#CB8A58") : Colors.Gray;
 
-        HomeIcon = tab == "Home" ? "home_icon_active.png" : "home_icon.png";
+        HomeIcon = tab == "Home" ? "vector.png" : "vectorwhite.png.png";
         FavouriteIcon = tab == "Favourite" ? "favourite_icon_active.png" : "favourite_icon.png";
         CartIcon = tab == "Cart" ? "cart_icon_active.png" : "cart_icon.png";
         ProfileIcon = tab == "Profile" ? "profile_icon_active.png" : "profile_icon.png";
+        HelpIcon =  "help_icon.png";
 
         OnPropertyChanged(nameof(HomeColor));
         OnPropertyChanged(nameof(FavouriteColor));
@@ -29,6 +30,7 @@ public partial class BottomNavBar : ContentView
         OnPropertyChanged(nameof(FavouriteIcon));
         OnPropertyChanged(nameof(CartIcon));
         OnPropertyChanged(nameof(ProfileIcon));
+        OnPropertyChanged(nameof(HelpIcon));
     }
 
     // Properties
@@ -41,6 +43,8 @@ public partial class BottomNavBar : ContentView
     public string FavouriteIcon { get; set; }
     public string CartIcon { get; set; }
     public string ProfileIcon { get; set; }
+
+    public string HelpIcon { get; set; }
 
     // Navigation (example)
     void OnHomeClicked(object sender, EventArgs e) => Shell.Current.GoToAsync("//home");

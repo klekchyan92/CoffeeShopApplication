@@ -1,4 +1,6 @@
 using CoffeeShopApplication.Controls;
+using CoffeeShopApplication.Controls.CoffeeShopApplication;
+using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
 
 namespace CoffeeShopApplication;
@@ -6,8 +8,34 @@ namespace CoffeeShopApplication;
 public partial class MenuPage : ContentPage
 {
     public Theme Theme { get; set; }
-    public ObservableCollection<MenuItemModel> MenuItems { get; set; }
-    public ObservableCollection<CategoryItem> Categories { get; set; }
+    private ObservableCollection<MenuItemModel> _menuItems;
+    private ObservableCollection<CategoryItem> _categories;
+    public ObservableCollection<MenuItemModel> MenuItems
+    {
+        get => _menuItems;
+        set
+        {
+            if (_menuItems != value)
+            {
+                _menuItems = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public ObservableCollection<CategoryItem> Categories
+    {
+        get => _categories;
+        set
+        {
+            if (_categories != value)
+            {
+                _categories = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
 
     public MenuPage(Theme theme)
     {
