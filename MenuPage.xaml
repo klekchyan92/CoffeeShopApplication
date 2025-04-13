@@ -3,9 +3,9 @@
     x:Class="CoffeeShopApplication.MenuPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:y="CoffeeShopApplication.Controls"
-    xmlns:local="clr-namespace:CoffeeShopApplication">
-    <!--BackgroundColor="{Binding ThemeBackgroundColor}">-->
+    xmlns:local="clr-namespace:CoffeeShopApplication"
+    xmlns:y="CoffeeShopApplication.Controls">
+    <!--  BackgroundColor="{Binding ThemeBackgroundColor}">  -->
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -251,7 +251,7 @@
                                                 TextColor="Black" />
                                             <Label
                                                 FontSize="14"
-                                                Text="{Binding Price,StringFormat='{}{0}$'}"
+                                                Text="{Binding Price, StringFormat='{}{0}$'}"
                                                 TextColor="Gray" />
                                         </VerticalStackLayout>
 

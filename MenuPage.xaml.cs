@@ -1,5 +1,4 @@
 using CoffeeShopApplication.Controls;
-using CoffeeShopApplication.Controls.CoffeeShopApplication;
 using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
 

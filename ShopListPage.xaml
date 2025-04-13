@@ -1,190 +1,262 @@
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:CoffeeShopApplication.Controls"
-             x:Class="CoffeeShopApplication.ShopListPage"
-             BackgroundColor="White"
-             Shell.NavBarIsVisible="False">
+<ContentPage
+    x:Class="CoffeeShopApplication.ShopListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:CoffeeShopApplication.Controls"
+    BackgroundColor="White"
+    Shell.NavBarIsVisible="False">
 
     <Grid RowDefinitions="Auto,*,Auto">
 
         <Grid Padding="15,20" ColumnDefinitions="*,Auto">
-            <Border StrokeThickness="1"
-            BackgroundColor="#F4F4F4"
-            StrokeShape="RoundRectangle 50"
-            HeightRequest="50"
-            VerticalOptions="Center">
-                <SearchBar Placeholder="Search .."
-                       Grid.Column="1"
-                       BackgroundColor="White"
-                       CancelButtonColor="#CB8A58"
-                       FontSize="14"
-                       HeightRequest="50"
-                       HorizontalOptions="Fill"
-                       VerticalOptions="Center" />
+            <Border
+                BackgroundColor="#F4F4F4"
+                HeightRequest="50"
+                StrokeShape="RoundRectangle 50"
+                StrokeThickness="1"
+                VerticalOptions="Center">
+                <SearchBar
+                    Grid.Column="1"
+                    BackgroundColor="White"
+                    CancelButtonColor="#CB8A58"
+                    FontSize="14"
+                    HeightRequest="50"
+                    HorizontalOptions="Fill"
+                    Placeholder="Search .."
+                    VerticalOptions="Center" />
             </Border>
 
-            <ImageButton Source="location.png"
-                 CornerRadius="25"
-                 HeightRequest="80"
-                 WidthRequest="60"
-                 Grid.Column="1"
-                 VerticalOptions="Center"
-                 Padding="12,0,0,0" />
+            <ImageButton
+                Grid.Column="1"
+                Padding="12,0,0,0"
+                CornerRadius="25"
+                HeightRequest="80"
+                Source="location.png"
+                VerticalOptions="Center"
+                WidthRequest="60" />
         </Grid>
 
 
         <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
-            <VerticalStackLayout Padding="15" Spacing="12">
-                <Border Stroke="#E5E5E5" StrokeThickness="1"
-                        BackgroundColor="#F9F9F9" 
-                        StrokeShape="RoundRectangle 15"
-                        Padding="10">
-                    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12">
-                        <Image Source="gotcha.png" VerticalOptions="Fill" HorizontalOptions="Fill"
-                               Grid.RowSpan="2" />
+            <VerticalStackLayout Padding="15" Spacing="12"
+                                
+                                 >
+                <Border
+                    Padding="10"
+                    BackgroundColor="#F9F9F9"
+                    Stroke="#E5E5E5"
+                    StrokeShape="RoundRectangle 15"
+                    StrokeThickness="1">
+                    <Grid
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="12"
+                        RowDefinitions="Auto,Auto">
+                        <Image
+                            Grid.RowSpan="2"
+                            HorizontalOptions="Fill"
+                            Source="gotcha.png"
+                            VerticalOptions="Fill" />
 
-                        <Label Text="Gotcha"
-                               FontAttributes="Bold"
-                               FontSize="16"
-                               TextColor="Black"
-                               Grid.Column="1" />
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Text="Gotcha"
+                            TextColor="Black" />
 
-                        <Image Source="arrow.png"
-                               HeightRequest="20"
-                               WidthRequest="20"
-                               Grid.Column="2"
-                               Grid.RowSpan="1"
-                               VerticalOptions="Center" />
+                        <Image
+                            Grid.RowSpan="1"
+                            Grid.Column="2"
+                            HeightRequest="20"
+                            Source="arrow.png"
+                            VerticalOptions="Center"
+                            WidthRequest="20" />
 
-                        <StackLayout Orientation="Horizontal"
-                                     Spacing="4"
-                                     Grid.Column="1"
-                                     Grid.Row="1">
-                            <Image Source="star48.png" HeightRequest="44" WidthRequest="104" />
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Orientation="Horizontal"
+                            Spacing="4">
+                            <Image
+                                HeightRequest="44"
+                                Source="star48.png"
+                                WidthRequest="104" />
                         </StackLayout>
                     </Grid>
                 </Border>
-                <Border Stroke="#E5E5E5" StrokeThickness="1"
-                        BackgroundColor="#F9F9F9"
-                        StrokeShape="RoundRectangle 15"
-                        Padding="10">
-                    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12">
-                        <Image Source="coffehouse.png"
-                               VerticalOptions="Fill" HorizontalOptions="Fill"
-                               Grid.RowSpan="2" />
+                <Border
+                    Padding="10"
+                    BackgroundColor="#F9F9F9"
+                    Stroke="#E5E5E5"
+                    StrokeShape="RoundRectangle 15"
+                    StrokeThickness="1">
+                    <Grid
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="12"
+                        RowDefinitions="Auto,Auto">
+                        <Image
+                            Grid.RowSpan="2"
+                            HorizontalOptions="Fill"
+                            Source="coffehouse.png"
+                            VerticalOptions="Fill" />
 
-                        <Label Text="Coffee House"
-                               FontAttributes="Bold"
-                               FontSize="16"
-                               TextColor="Black"
-                               Grid.Column="1" />
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Text="Coffee House"
+                            TextColor="Black" />
 
-                        <Image Source="arrow.png"
-                               HeightRequest="20"
-                               WidthRequest="20"
-                               Grid.Column="2"
-                               Grid.RowSpan="1"
-                               VerticalOptions="Center" />
+                        <Image
+                            Grid.RowSpan="1"
+                            Grid.Column="2"
+                            HeightRequest="20"
+                            Source="arrow.png"
+                            VerticalOptions="Center"
+                            WidthRequest="20" />
 
-                        <StackLayout Orientation="Horizontal"
-                                     Spacing="4"
-                                     Grid.Column="1"
-                                     Grid.Row="1">
-                            <Image Source="star48.png" HeightRequest="44" WidthRequest="104" />
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Orientation="Horizontal"
+                            Spacing="4">
+                            <Image
+                                HeightRequest="44"
+                                Source="star48.png"
+                                WidthRequest="104" />
                         </StackLayout>
                     </Grid>
                 </Border>
-                <Border Stroke="#E5E5E5" StrokeThickness="1"
-                        BackgroundColor="#F9F9F9"
-                        StrokeShape="RoundRectangle 15"
-                        Padding="10">
-                    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12">
-                        <Image Source="cofix.png"
-                               VerticalOptions="Fill" HorizontalOptions="Fill"
-                               Grid.RowSpan="2" />
+                <Border
+                    Padding="10"
+                    BackgroundColor="#F9F9F9"
+                    Stroke="#E5E5E5"
+                    StrokeShape="RoundRectangle 15"
+                    StrokeThickness="1">
+                    <Grid
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="12"
+                        RowDefinitions="Auto,Auto">
+                        <Image
+                            Grid.RowSpan="2"
+                            HorizontalOptions="Fill"
+                            Source="cofix.png"
+                            VerticalOptions="Fill" />
 
-                        <Label Text="Cofix"
-                               FontAttributes="Bold"
-                               FontSize="16"
-                               TextColor="Black"
-                               Grid.Column="1" />
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Text="Cofix"
+                            TextColor="Black" />
 
-                        <Image Source="arrow.png"
-                               HeightRequest="20"
-                               WidthRequest="20"
-                               Grid.Column="2"
-                               Grid.RowSpan="1"
-                               VerticalOptions="Center" >
+                        <Image
+                            Grid.RowSpan="1"
+                            Grid.Column="2"
+                            HeightRequest="20"
+                            Source="arrow.png"
+                            VerticalOptions="Center"
+                            WidthRequest="20">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnArrowTapped" />
                             </Image.GestureRecognizers>
                         </Image>
 
-                        <StackLayout Orientation="Horizontal"
-                                     Spacing="4"
-                                     Grid.Column="1"
-                                     Grid.Row="1">
-                            <Image Source="star48.png" HeightRequest="44" WidthRequest="104" />
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Orientation="Horizontal"
+                            Spacing="4">
+                            <Image
+                                HeightRequest="44"
+                                Source="star48.png"
+                                WidthRequest="104" />
                         </StackLayout>
                     </Grid>
                 </Border>
-                <Border Stroke="#E5E5E5" StrokeThickness="1"
-                        BackgroundColor="#F9F9F9"
-                        StrokeShape="RoundRectangle 15"
-                        Padding="10">
-                    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12">
-                        <Image Source="prepa.png"
-                               VerticalOptions="Fill" HorizontalOptions="Fill"
-                               Grid.RowSpan="2" />
+                <Border
+                    Padding="10"
+                    BackgroundColor="#F9F9F9"
+                    Stroke="#E5E5E5"
+                    StrokeShape="RoundRectangle 15"
+                    StrokeThickness="1">
+                    <Grid
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="12"
+                        RowDefinitions="Auto,Auto">
+                        <Image
+                            Grid.RowSpan="2"
+                            HorizontalOptions="Fill"
+                            Source="prepa.png"
+                            VerticalOptions="Fill" />
 
-                        <Label Text="Prepa"
-                               FontAttributes="Bold"
-                               FontSize="16"
-                               TextColor="Black"
-                               Grid.Column="1" />
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Text="Prepa"
+                            TextColor="Black" />
 
-                        <Image Source="arrow.png"
-                               HeightRequest="20"
-                               WidthRequest="20"
-                               Grid.Column="2"
-                               Grid.RowSpan="1"
-                               VerticalOptions="Center" />
+                        <Image
+                            Grid.RowSpan="1"
+                            Grid.Column="2"
+                            HeightRequest="20"
+                            Source="arrow.png"
+                            VerticalOptions="Center"
+                            WidthRequest="20" />
 
-                        <StackLayout Orientation="Horizontal"
-                                     Spacing="4"
-                                     Grid.Column="1"
-                                     Grid.Row="1">
-                            <Image Source="star48.png" HeightRequest="44" WidthRequest="104" />
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Orientation="Horizontal"
+                            Spacing="4">
+                            <Image
+                                HeightRequest="44"
+                                Source="star48.png"
+                                WidthRequest="104" />
                         </StackLayout>
                     </Grid>
                 </Border>
-                <Border Stroke="#E5E5E5" StrokeThickness="1"
-                        BackgroundColor="#F9F9F9"
-                        StrokeShape="RoundRectangle 15"
-                        Padding="10">
-                    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12">
-                        <Image Source="music.png"
-                               VerticalOptions="Fill" HorizontalOptions="Fill"
-                               Grid.RowSpan="2" />
+                <Border
+                    Padding="10"
+                    BackgroundColor="#F9F9F9"
+                    Stroke="#E5E5E5"
+                    StrokeShape="RoundRectangle 15"
+                    StrokeThickness="1">
+                    <Grid
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="12"
+                        RowDefinitions="Auto,Auto">
+                        <Image
+                            Grid.RowSpan="2"
+                            HorizontalOptions="Fill"
+                            Source="music.png"
+                            VerticalOptions="Fill" />
 
-                        <Label Text="Coffee Music"
-                               FontAttributes="Bold"
-                               FontSize="16"
-                               TextColor="Black"
-                               Grid.Column="1" />
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Text="Coffee Music"
+                            TextColor="Black" />
 
-                        <Image Source="arrow.png"
-                               HeightRequest="20"
-                               WidthRequest="20"
-                               Grid.Column="2"
-                               Grid.RowSpan="1"
-                               VerticalOptions="Center" />
+                        <Image
+                            Grid.RowSpan="1"
+                            Grid.Column="2"
+                            HeightRequest="20"
+                            Source="arrow.png"
+                            VerticalOptions="Center"
+                            WidthRequest="20" />
 
-                        <StackLayout Orientation="Horizontal"
-                                     Spacing="4"
-                                     Grid.Column="1"
-                                     Grid.Row="1">
-                            <Image Source="star48.png" HeightRequest="44" WidthRequest="104" />
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Orientation="Horizontal"
+                            Spacing="4">
+                            <Image
+                                HeightRequest="44"
+                                Source="star48.png"
+                                WidthRequest="104" />
                         </StackLayout>
                     </Grid>
                 </Border>
