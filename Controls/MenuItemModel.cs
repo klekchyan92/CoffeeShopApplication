@@ -6,8 +6,6 @@ namespace CoffeeShopApplication.Controls
 {
 // Make sure this is included
 
-    namespace CoffeeShopApplication
-    {
         public class MenuItemModel : INotifyPropertyChanged
         {
             private string _name;
@@ -80,4 +78,4 @@ namespace CoffeeShopApplication.Controls
             }
         }
     }
-}
+

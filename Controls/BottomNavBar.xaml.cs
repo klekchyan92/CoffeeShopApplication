@@ -6,21 +6,41 @@ public partial class BottomNavBar : ContentView
     {
         InitializeComponent();
         BindingContext = this;
-        SetActiveTab("Home"); // default
+        CurrentActiveTab = TabService.CurrentActiveTab;
+        SetActiveTab(CurrentActiveTab);
+    }
+
+    private string _currentActiveTab;
+    public string CurrentActiveTab
+    {
+        get => _currentActiveTab;
+        set
+        {
+            if (_currentActiveTab != value)
+            {
+                _currentActiveTab = value;
+                TabService.CurrentActiveTab = value;
+                OnPropertyChanged(nameof(CurrentActiveTab));
+                SetActiveTab(_currentActiveTab);
+            }
+        }
     }
 
     public void SetActiveTab(string tab)
     {
+        if (string.IsNullOrWhiteSpace(tab))
+            return;
+
         HomeColor = tab == "Home" ? Color.FromArgb("#CB8A58") : Colors.Gray;
         FavouriteColor = tab == "Favourite" ? Color.FromArgb("#CB8A58") : Colors.Gray;
         CartColor = tab == "Cart" ? Color.FromArgb("#CB8A58") : Colors.Gray;
         ProfileColor = tab == "Profile" ? Color.FromArgb("#CB8A58") : Colors.Gray;
 
-        HomeIcon = tab == "Home" ? "vector.png" : "vectorwhite.png.png";
+        HomeIcon = tab == "Home" ? "vector.png" : "vectorwhite.png";
         FavouriteIcon = tab == "Favourite" ? "favourite_icon_active.png" : "favourite_icon.png";
         CartIcon = tab == "Cart" ? "cart_icon_active.png" : "cart_icon.png";
         ProfileIcon = tab == "Profile" ? "profile_icon_active.png" : "profile_icon.png";
-        HelpIcon =  "help_icon.png";
+        HelpIcon = "help_icon.png";
 
         OnPropertyChanged(nameof(HomeColor));
         OnPropertyChanged(nameof(FavouriteColor));
@@ -47,9 +67,32 @@ public partial class BottomNavBar : ContentView
     public string HelpIcon { get; set; }
 
     // Navigation (example)
-    void OnHomeClicked(object sender, EventArgs e) => Shell.Current.GoToAsync("//home");
-    void OnFavouriteClicked(object sender, EventArgs e) => Shell.Current.GoToAsync("//favourite");
-    void OnHelpClicked(object sender, EventArgs e) => Shell.Current.GoToAsync("//help");
-    void OnCartClicked(object sender, EventArgs e) => Shell.Current.GoToAsync("//cart");
-    void OnProfileClicked(object sender, EventArgs e) => Shell.Current.GoToAsync("//profile");
+    void OnHomeClicked(object sender, EventArgs e)
+    {
+        CurrentActiveTab = "Home";
+        Shell.Current.GoToAsync("//home");
+    }
+
+    async void OnFavouriteClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new FavoritePage("Favourite"));
+
+    }
+
+    void OnHelpClicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//help");
+    }
+
+    void OnCartClicked(object sender, EventArgs e)
+    {
+        CurrentActiveTab = "Cart";
+        Shell.Current.GoToAsync("//cart");
+    }
+
+    void OnProfileClicked(object sender, EventArgs e)
+    {
+        CurrentActiveTab = "Profile";
+        Shell.Current.GoToAsync("//profile");
+    }
 }
