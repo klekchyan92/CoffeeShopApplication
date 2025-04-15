@@ -8,8 +8,8 @@ public partial class FavoritePage : ContentPage
 {
     public FavoritePage(string activeTab)
     {
-        InitializeComponent();
         TabService.CurrentActiveTab = activeTab;
+        InitializeComponent();
     }
 
     private ObservableCollection<MenuItemModel> _menuItems;
