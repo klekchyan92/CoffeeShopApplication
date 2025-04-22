@@ -38,9 +38,7 @@
 
 
         <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
-            <VerticalStackLayout Padding="15" Spacing="12"
-                                
-                                 >
+            <VerticalStackLayout Padding="15" Spacing="12">
                 <Border
                     Padding="10"
                     BackgroundColor="#F9F9F9"
@@ -262,7 +260,18 @@
                 </Border>
             </VerticalStackLayout>
         </ScrollView>
-
-        <controls:BottomNavBar x:Name="NavBar" Grid.Row="2" />
+        <VerticalStackLayout
+            Grid.Row="2"
+            HorizontalOptions="Center"
+            Spacing="2">
+            <ImageButton
+                BackgroundColor="#CB8A58"
+                Clicked="OnHelpClicked"
+                CornerRadius="24"
+                HeightRequest="48"
+                Source="help_icon.png"
+                WidthRequest="48" />
+        </VerticalStackLayout>
+        <!--<controls:BottomNavBar x:Name="NavBar" Grid.Row="2" />-->
     </Grid>
 </ContentPage>

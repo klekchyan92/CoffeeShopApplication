@@ -23,9 +23,14 @@ public partial class ShopListPage : ContentPage
             TextColor = Colors.Black
         };
 
-        await Navigation.PushAsync(new MenuPage(theme));
+        await Navigation.PushAsync(new MenuPage());
 
         //await Navigation.PushAsync(new CoffeeDetailsPage());
+    }
+
+    async void OnHelpClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ChatPage());
     }
 
     protected override void OnAppearing()

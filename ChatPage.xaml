@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CoffeeShopApplication.ChatPage"
+    BackgroundColor="White"
+    Shell.TabBarIsVisible="False"
+    Shell.NavBarIsVisible="True"
+    xmlns:local="clr-namespace:CoffeeShopApplication">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:QuestionAnswerColorConverter x:Key="QuestionAnswerColorConverter" />
+            <local:MessageAlignmentConverter x:Key="MessageAlignmentConverter" />
+            <local:MessageTextColorConverter x:Key="MessageTextColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Center" Spacing="5">
+            <Image
+            Margin="-4,0,0,0"
+            HeightRequest="45"
+            HorizontalOptions="Start"
+            Source="help.png"
+            VerticalOptions="Center"
+            WidthRequest="45" />
+            <Label Text="ChatBot" TextColor="#846046" FontAttributes="Bold" FontSize="20" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <Grid RowDefinitions="*,Auto,Auto">
+
+        <CollectionView x:Name="MessagesCollectionView"
+                        ItemsSource="{Binding Messages}"
+                        SelectionMode="None"
+                        VerticalOptions="Fill"
+                        Margin="10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="10"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 25"
+                           BackgroundColor="{Binding IsQuestion, Converter={StaticResource QuestionAnswerColorConverter}}"
+                           HorizontalOptions="{Binding IsQuestion, Converter={StaticResource MessageAlignmentConverter}}"
+                           Margin="5">
+                        <Label Text="{Binding Text}"
+                                                  TextColor="{Binding IsQuestion, Converter={StaticResource MessageTextColorConverter}}"
+
+                               FontSize="14"
+                               HorizontalOptions="Center"/>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <CollectionView x:Name="QuestionsCollectionView"
+                        Grid.Row="1"
+                        SelectionMode="Single"
+                        Margin="10"
+                        SelectionChanged="QuestionsCollectionView_SelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        StrokeThickness="1"
+                            StrokeShape="RoundRectangle 25"
+                           Padding="10"
+                           BackgroundColor="#ECECEC"
+                           Margin="5">
+                        <Label Text="{Binding .}"
+                               FontSize="14"
+                               TextColor="Black"/>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        <Border Grid.Row="2"                             
+                StrokeThickness="1"
+                            StrokeShape="RoundRectangle 25"
+       BackgroundColor="White"
+       Margin="10">
+
+            <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+
+                <Entry x:Name="UserMessageEntry"
+               Placeholder="Ask a question..."
+               PlaceholderColor="#B0B0B0"
+               BackgroundColor="Transparent"
+               Visual="Material"
+               TextColor="Black"
+               FontSize="14"
+               VerticalOptions="Center"/>
+
+                <ImageButton Grid.Column="1" Source="send.png"
+                             Clicked="SendMessageButton_Clicked"
+                             HeightRequest="14" WidthRequest="14"
+                             BackgroundColor="Transparent"/>
+
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</ContentPage>

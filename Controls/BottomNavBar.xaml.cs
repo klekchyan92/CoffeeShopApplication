@@ -79,20 +79,20 @@ public partial class BottomNavBar : ContentView
 
     }
 
-    void OnHelpClicked(object sender, EventArgs e)
+    async void OnHelpClicked(object sender, EventArgs e)
     {
-        Shell.Current.GoToAsync("//help");
+        await Navigation.PushAsync(new ChatPage());
     }
 
-    void OnCartClicked(object sender, EventArgs e)
+    async void OnCartClicked(object sender, EventArgs e)
     {
         CurrentActiveTab = "Cart";
-        Shell.Current.GoToAsync("//cart");
+        await Navigation.PushAsync(new CartPage());
     }
 
-    void OnProfileClicked(object sender, EventArgs e)
+    async void OnProfileClicked(object sender, EventArgs e)
     {
         CurrentActiveTab = "Profile";
-        Shell.Current.GoToAsync("//profile");
+        await Navigation.PushAsync(new ProfilePage1());
     }
 }

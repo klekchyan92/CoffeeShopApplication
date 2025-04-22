@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CoffeeShopApplication.CartPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="White">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20">
+
+        <!-- Заголовок -->
+        <Label Text="Your Cart:"
+               FontAttributes="Bold"
+               FontSize="24"
+               TextColor="Black" />
+
+        <!-- Список товаров -->
+        <CollectionView
+            x:Name="CartItemsCollectionView"
+            Grid.Row="1"
+            ItemsSource="{Binding CartItems}"
+            SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        BackgroundColor="White"
+                        Padding="10"
+                        StrokeShape="RoundRectangle 10"
+                        StrokeThickness="1"
+                        Margin="0,5">
+                        <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" Padding="5">
+
+                            <!-- Фото товара -->
+                            <Image
+                                Source="{Binding Image}"
+                                WidthRequest="60"
+                                HeightRequest="60"
+                                Aspect="AspectFill"
+                                Grid.RowSpan="2"
+                                Margin="0,0,10,0" />
+
+                            <!-- Название -->
+                            <Label
+                                Grid.Column="1"
+                                Text="{Binding Name}"
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                TextColor="Black" />
+
+                            <!-- Цена + Количество + Кнопки -->
+                            <HorizontalStackLayout
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Spacing="8"
+                                VerticalOptions="Center">
+                                <Label
+                                    Text="{Binding Price, StringFormat='{0} AMD'}"
+                                    VerticalOptions="Center"
+                                    FontSize="14"
+                                    TextColor="Gray" />
+
+                                <Button
+                                    Text="-"
+                                    Clicked="OnDecreaseQuantityClicked"
+                                    WidthRequest="30"
+                                    HeightRequest="30"
+                                    CornerRadius="15"
+                                    FontSize="18"
+                                    BackgroundColor="#E0E0E0"
+                                    TextColor="Black" />
+
+                                <Label
+                                    Text="{Binding Quantity}"
+                                    VerticalOptions="Center"
+                                    FontSize="14"
+                                    TextColor="Black" />
+
+                                <Button
+                                    Text="+"
+                                    Clicked="OnIncreaseQuantityClicked"
+                                    WidthRequest="30"
+                                    HeightRequest="30"
+                                    CornerRadius="15"
+                                    FontSize="18"
+                                    BackgroundColor="#CB8A58"
+                                    TextColor="White" />
+                            </HorizontalStackLayout>
+
+                            <!-- Кнопка удалить (справа) -->
+                            <ImageButton
+                                Grid.RowSpan="2"
+                                Grid.Column="2"
+                                Source="delete_icon.png"
+                                WidthRequest="32"
+                                HeightRequest="32"
+                                BackgroundColor="Transparent"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                Clicked="OnDeleteItemClicked" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Итого и кнопка -->
+        <VerticalStackLayout Grid.Row="2" Spacing="20">
+
+            <!-- Total -->
+            <Label
+                x:Name="TotalLabel"
+                Text="Total: 0 AMD"
+                FontAttributes="Bold"
+                FontSize="20"
+                TextColor="Black"
+                HorizontalOptions="Start" />
+
+            <!-- Кнопка Checkout -->
+            <Button
+                Text="Go to Checkout"
+                HeightRequest="55"
+                CornerRadius="30"
+                FontAttributes="Bold"
+                TextColor="White"
+                Clicked="OnCheckoutClicked">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#CB8A58" Offset="0.0" />
+                        <GradientStop Color="#562B1A" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
+
+
+
+                <Button.ImageSource>
+                    <FontImageSource
+                        Glyph="→"
+                        Size="20"
+                        Color="White" />
+                </Button.ImageSource>
+            </Button>
+
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>

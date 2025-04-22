@@ -287,7 +287,7 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <controls:BottomNavBar x:Name="NavBar" Grid.Row="2" />
+        <!--<controls:BottomNavBar x:Name="NavBar" Grid.Row="2" />-->
     </Grid>
 
 </ContentPage>
