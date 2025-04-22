@@ -3,18 +3,19 @@
     x:Class="CoffeeShopApplication.CartPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Shell.NavBarIsVisible="False"
-    BackgroundColor="White">
+    BackgroundColor="White"
+    Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="Auto,*,Auto" Padding="20">
+    <Grid Padding="20" RowDefinitions="Auto,*,Auto">
 
-        <!-- Заголовок -->
-        <Label Text="Your Cart:"
-               FontAttributes="Bold"
-               FontSize="24"
-               TextColor="Black" />
+        <!--  Заголовок  -->
+        <Label
+            FontAttributes="Bold"
+            FontSize="24"
+            Text="Your Cart:"
+            TextColor="Black" />
 
-        <!-- Список товаров -->
+        <!--  Список товаров  -->
         <CollectionView
             x:Name="CartItemsCollectionView"
             Grid.Row="1"
@@ -23,110 +24,113 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Border
-                        BackgroundColor="White"
+                        Margin="0,5"
                         Padding="10"
+                        BackgroundColor="White"
                         StrokeShape="RoundRectangle 10"
-                        StrokeThickness="1"
-                        Margin="0,5">
-                        <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" Padding="5">
+                        StrokeThickness="1">
+                        <Grid
+                            Padding="5"
+                            ColumnDefinitions="Auto,*,Auto"
+                            RowDefinitions="Auto,Auto">
 
-                            <!-- Фото товара -->
+                            <!--  Фото товара  -->
                             <Image
-                                Source="{Binding Image}"
-                                WidthRequest="60"
-                                HeightRequest="60"
-                                Aspect="AspectFill"
                                 Grid.RowSpan="2"
-                                Margin="0,0,10,0" />
+                                Margin="0,0,10,0"
+                                Aspect="AspectFill"
+                                HeightRequest="60"
+                                Source="{Binding Image}"
+                                WidthRequest="60" />
 
-                            <!-- Название -->
+                            <!--  Название  -->
                             <Label
                                 Grid.Column="1"
-                                Text="{Binding Name}"
                                 FontAttributes="Bold"
                                 FontSize="16"
+                                Text="{Binding Name}"
                                 TextColor="Black" />
 
-                            <!-- Цена + Количество + Кнопки -->
+                            <!--  Цена + Количество + Кнопки  -->
                             <HorizontalStackLayout
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 Spacing="8"
                                 VerticalOptions="Center">
                                 <Label
-                                    Text="{Binding Price, StringFormat='{0} AMD'}"
-                                    VerticalOptions="Center"
                                     FontSize="14"
-                                    TextColor="Gray" />
+                                    Text="{Binding Price, StringFormat='{0} AMD'}"
+                                    TextColor="Gray"
+                                    VerticalOptions="Center" />
 
                                 <Button
-                                    Text="-"
+                                    BackgroundColor="#E0E0E0"
                                     Clicked="OnDecreaseQuantityClicked"
-                                    WidthRequest="30"
-                                    HeightRequest="30"
                                     CornerRadius="15"
                                     FontSize="18"
-                                    BackgroundColor="#E0E0E0"
-                                    TextColor="Black" />
+                                    HeightRequest="30"
+                                    Text="-"
+                                    TextColor="Black"
+                                    WidthRequest="30" />
 
                                 <Label
-                                    Text="{Binding Quantity}"
-                                    VerticalOptions="Center"
                                     FontSize="14"
-                                    TextColor="Black" />
+                                    Text="{Binding Quantity}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center" />
 
                                 <Button
-                                    Text="+"
+                                    BackgroundColor="#CB8A58"
                                     Clicked="OnIncreaseQuantityClicked"
-                                    WidthRequest="30"
-                                    HeightRequest="30"
                                     CornerRadius="15"
                                     FontSize="18"
-                                    BackgroundColor="#CB8A58"
-                                    TextColor="White" />
+                                    HeightRequest="30"
+                                    Text="+"
+                                    TextColor="White"
+                                    WidthRequest="30" />
                             </HorizontalStackLayout>
 
-                            <!-- Кнопка удалить (справа) -->
+                            <!--  Кнопка удалить (справа)  -->
                             <ImageButton
                                 Grid.RowSpan="2"
                                 Grid.Column="2"
-                                Source="delete_icon.png"
-                                WidthRequest="32"
-                                HeightRequest="32"
                                 BackgroundColor="Transparent"
+                                Clicked="OnDeleteItemClicked"
+                                HeightRequest="32"
                                 HorizontalOptions="End"
+                                Source="delete_icon.png"
                                 VerticalOptions="Center"
-                                Clicked="OnDeleteItemClicked" />
+                                WidthRequest="32" />
                         </Grid>
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <!-- Итого и кнопка -->
+        <!--  Итого и кнопка  -->
         <VerticalStackLayout Grid.Row="2" Spacing="20">
 
-            <!-- Total -->
+            <!--  Total  -->
             <Label
                 x:Name="TotalLabel"
-                Text="Total: 0 AMD"
                 FontAttributes="Bold"
                 FontSize="20"
-                TextColor="Black"
-                HorizontalOptions="Start" />
+                HorizontalOptions="Start"
+                Text="Total: 0 AMD"
+                TextColor="Black" />
 
-            <!-- Кнопка Checkout -->
+            <!--  Кнопка Checkout  -->
             <Button
-                Text="Go to Checkout"
-                HeightRequest="55"
+                Clicked="OnCheckoutClicked"
                 CornerRadius="30"
                 FontAttributes="Bold"
-                TextColor="White"
-                Clicked="OnCheckoutClicked">
+                HeightRequest="55"
+                Text="Go to Checkout"
+                TextColor="White">
                 <Button.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                        <GradientStop Color="#CB8A58" Offset="0.0" />
-                        <GradientStop Color="#562B1A" Offset="1.0" />
+                        <GradientStop Offset="0.0" Color="#CB8A58" />
+                        <GradientStop Offset="1.0" Color="#562B1A" />
                     </LinearGradientBrush>
                 </Button.Background>
 

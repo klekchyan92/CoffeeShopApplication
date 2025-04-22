@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CoffeeShopApplication.ProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="White"
+    NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20"
+            HorizontalOptions="Center"
+            Spacing="20">
+
+            <!-- Profile Image -->
+            <Image
+                Margin="0,30,0,0"
+                Aspect="AspectFill"
+                HeightRequest="100"
+                WidthRequest="100"
+                HorizontalOptions="Center"
+                Source="profile_icon.png" />
+
+            <!-- Name -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="Yeva Vardanyan"
+                TextColor="Black" />
+
+            <!-- Phone -->
+            <Label
+                FontSize="14"
+                HorizontalOptions="Center"
+                Text="(+374)98 806 222"
+                TextColor="Gray" />
+
+            <!-- Settings Rows -->
+            <VerticalStackLayout Spacing="12" WidthRequest="300">
+
+                <!-- Edit Profile -->
+                <Grid Style="{StaticResource SettingsRowStyle}">
+                    <Label Text="Edit Profile"
+                           VerticalOptions="Center"
+                           FontSize="14"
+                           TextColor="Black" />
+                    <Image Source="white_arrow.png"
+                           Grid.Column="1"
+                           HeightRequest="18"
+                           WidthRequest="18"
+                           VerticalOptions="Center" />
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnEditProfileClicked" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+                <!-- Bank Cards -->
+                <Grid Style="{StaticResource SettingsRowStyle}">
+                    <Label Text="Bank Cards"
+                           VerticalOptions="Center"
+                           FontSize="14"
+                           TextColor="Black" />
+                    <Image Source="white_arrow.png"
+                           Grid.Column="1"
+                           HeightRequest="18"
+                           WidthRequest="18"
+                           VerticalOptions="Center" />
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBankCardsClicked" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+                <!-- Order History -->
+                <Grid Style="{StaticResource SettingsRowStyle}">
+                    <Label Text="Order History"
+                           VerticalOptions="Center"
+                           FontSize="14"
+                           TextColor="Black" />
+                    <Image Source="white_arrow.png"
+                           Grid.Column="1"
+                           HeightRequest="18"
+                           WidthRequest="18"
+                           VerticalOptions="Center" />
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnOrderHistoryClicked" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+                <!-- Push Notifications -->
+                <Grid Style="{StaticResource SettingsRowStyle}">
+                    <Label Text="Push Notifications"
+                           VerticalOptions="Center"
+                           FontSize="14"
+                           TextColor="Black" />
+                    <Switch Grid.Column="1"
+                            IsToggled="{Binding IsPushEnabled}"
+                            OnColor="#CB8A58"
+                            VerticalOptions="Center" />
+                </Grid>
+
+                <!-- Language -->
+                <Grid Style="{StaticResource SettingsRowStyle}">
+                    <Label Text="Language"
+                           VerticalOptions="Center"
+                           FontSize="14"
+                           TextColor="Black" />
+                    <Image Source="white_arrow.png"
+                           Grid.Column="1"
+                           HeightRequest="18"
+                           WidthRequest="18"
+                           VerticalOptions="Center" />
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLanguageClicked" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+            </VerticalStackLayout>
+
+            <!-- Logout -->
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="14"
+                    Text="Logout"
+                    TextColor="#CB8A58"
+                    VerticalOptions="Center" />
+                <Image
+                    Margin="5,0,0,0"
+                    HeightRequest="18"
+                    WidthRequest="18"
+                    Source="logout_icon.png"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

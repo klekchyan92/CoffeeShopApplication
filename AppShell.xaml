@@ -4,35 +4,35 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:CoffeeShopApplication"
-    Shell.FlyoutBehavior="Flyout" 
     NavigationPage.HasNavigationBar="False"
+    Shell.FlyoutBehavior="Flyout"
     Shell.TabBarBackgroundColor="White"
-    Shell.TabBarTitleColor="#CB8A58"
     Shell.TabBarForegroundColor="#562B1A"
+    Shell.TabBarTitleColor="#CB8A58"
     Shell.TabBarUnselectedColor="Gray">
     <TabBar>
         <ShellContent
             Title="Home"
-            Icon="home.png"
             ContentTemplate="{DataTemplate local:ShopListPage}"
-            Route="shoplist"/>
+            Icon="home.png"
+            Route="shoplist" />
 
         <ShellContent
-            Title="Favorites"
-            Icon="cart_icon.png"
+            Title="Favorite"
             ContentTemplate="{DataTemplate local:FavoritePage}"
-            Route="favorites"/>
+            Icon="cart_icon.png"
+            Route="favorites" />
 
         <ShellContent
             Title="Cart"
-            Icon="cart_icon.png"
             ContentTemplate="{DataTemplate local:CartPage}"
+            Icon="cart_icon.png"
             Route="cart" />
 
         <ShellContent
             Title="Profile"
+            ContentTemplate="{DataTemplate local:ProfilePage}"
             Icon="profile_icon.png"
-            ContentTemplate="{DataTemplate local:MainPage}"
-            Route="profile"/>
+            Route="profile" />
     </TabBar>
 </Shell>
