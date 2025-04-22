@@ -5,10 +5,34 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:CoffeeShopApplication"
     Shell.FlyoutBehavior="Flyout" 
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="False"
+    Shell.TabBarBackgroundColor="White"
+    Shell.TabBarTitleColor="#CB8A58"
+    Shell.TabBarForegroundColor="#562B1A"
+    Shell.TabBarUnselectedColor="Gray">
+    <TabBar>
+        <ShellContent
+            Title="Home"
+            Icon="home.png"
+            ContentTemplate="{DataTemplate local:ShopListPage}"
+            Route="shoplist"/>
 
-    <ShellContent
-        ContentTemplate="{DataTemplate local:AnimatedSplashPage}"
-        Route="AnimatedSplashPage" />
+        <ShellContent
+            Title="Favorites"
+            Icon="cart_icon.png"
+            ContentTemplate="{DataTemplate local:FavoritePage}"
+            Route="favorites"/>
 
+        <ShellContent
+            Title="Cart"
+            Icon="cart_icon.png"
+            ContentTemplate="{DataTemplate local:CartPage}"
+            Route="cart" />
+
+        <ShellContent
+            Title="Profile"
+            Icon="profile_icon.png"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="profile"/>
+    </TabBar>
 </Shell>

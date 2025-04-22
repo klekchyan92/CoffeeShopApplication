@@ -36,10 +36,10 @@ public partial class MenuPage : ContentPage
     }
 
 
-    public MenuPage(Theme theme)
+    public MenuPage()
     {
         InitializeComponent();
-        Theme = theme;
+        Theme = new Theme();
         Categories = new ObservableCollection<CategoryItem>
         {
             new CategoryItem { Name = "Beverages"},
@@ -58,6 +58,14 @@ public partial class MenuPage : ContentPage
         };
 
         BindingContext = this;
+    }
+
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        Shell.SetTabBarIsVisible(this, true);
     }
 
     private async void OnBackButtonClicked(object sender, EventArgs e)

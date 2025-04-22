@@ -127,22 +127,20 @@
                                     TextColor="Gray" />
                             </VerticalStackLayout>
 
-                            <!--  ➕ Button  -->
-                            <Frame
-                                Padding="0"
-                                BackgroundColor="#CB8A58"
-                                CornerRadius="12"
-                                HeightRequest="24"
-                                HorizontalOptions="End"
-                                VerticalOptions="Center"
-                                WidthRequest="24">
-                                <Label
-                                    FontSize="18"
-                                    HorizontalOptions="Center"
-                                    Text="+"
-                                    TextColor="White"
-                                    VerticalOptions="Center" />
-                            </Frame>
+                            <!-- ➕ Button -->
+                            <Border BackgroundColor="#CB8A58"
+                   HeightRequest="24"
+                   WidthRequest="24"
+                   Padding="0"
+                            StrokeShape="RoundRectangle 25"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End">
+                                <Label Text="+" 
+                       FontSize="18"
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+                            </Border>
                         </Grid>
 
                     </VerticalStackLayout>
