@@ -75,7 +75,7 @@ public partial class BottomNavBar : ContentView
 
     async void OnFavouriteClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new FavoritePage("Favourite"));
+        await Navigation.PushAsync(new FavoritePage());
 
     }
 
@@ -93,6 +93,6 @@ public partial class BottomNavBar : ContentView
     async void OnProfileClicked(object sender, EventArgs e)
     {
         CurrentActiveTab = "Profile";
-        await Navigation.PushAsync(new ProfilePage1());
+        await Navigation.PushAsync(new ProfilePage());
     }
 }

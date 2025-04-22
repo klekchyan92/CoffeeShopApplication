@@ -12,7 +12,7 @@ public partial class CartPage : ContentPage
         InitializeComponent();
         BindingContext = this;
 
-        CartItems.Add(new CartItem { Image = "affogato_coffee.png", Name = "Affogato Coffee", Price = 800, Quantity = 1 });
+        CartItems.Add(new CartItem { Image = "affogato.png", Name = "Affogato Coffee", Price = 800, Quantity = 1 });
         CartItems.Add(new CartItem { Image = "flat_white.png", Name = "Flat White", Price = 900, Quantity = 1 });
 
         UpdateTotal();

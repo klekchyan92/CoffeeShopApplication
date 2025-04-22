@@ -62,6 +62,7 @@
 	<ItemGroup>
 	  <MauiImage Include="Resources\Icons\ic_roundfavorite.png" />
 	  <MauiImage Include="Resources\Icons\ic_roundfavoriteyellow.png" />
+	  <MauiImage Include="Resources\Icons\trash_icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -107,6 +108,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MenuPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ProfilePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ShopListPage.xaml">

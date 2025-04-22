@@ -3,291 +3,82 @@
     x:Class="CoffeeShopApplication.FavoritePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:CoffeeShopApplication"
     xmlns:controls="clr-namespace:CoffeeShopApplication.Controls"
+    xmlns:local="clr-namespace:CoffeeShopApplication"
+    Title=""
+    BackgroundColor="White">
 
-    Title="FavoritePage">
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <local:CategorySelectedBackgroundConverter x:Key="CategorySelectedBackgroundConverter" />
-            <local:CategorySelectedTextColorConverter x:Key="CategorySelectedTextColorConverter" />
-        </ResourceDictionary>
-        <!--<Style TargetType="Label">
-         <Setter Property="TextColor" Value="{Binding Theme.TextColor}" />
-     </Style>-->
-    </ContentPage.Resources>
     <Grid RowDefinitions="Auto,*,Auto">
 
-        <Grid Padding="15,20" ColumnDefinitions="*,Auto">
-            <Border StrokeThickness="1"
-            BackgroundColor="#F4F4F4"
-            StrokeShape="RoundRectangle 50"
-            HeightRequest="50"
-            VerticalOptions="Center">
-                <SearchBar Placeholder="Search .."
-                       Grid.Column="1"
-                       BackgroundColor="White"
-                       CancelButtonColor="#CB8A58"
-                       FontSize="14"
-                       HeightRequest="50"
-                       HorizontalOptions="Fill"
-                       VerticalOptions="Center" />
+        <!--  Search Bar  -->
+        <StackLayout Padding="15,20,15,10">
+            <Border BackgroundColor="#F4F4F4" StrokeShape="RoundRectangle 20">
+                <SearchBar
+                    BackgroundColor="White"
+                    CancelButtonColor="#CB8A58"
+                    FontSize="14"
+                    HeightRequest="45"
+                    Placeholder="Search .." />
             </Border>
+        </StackLayout>
 
-            <ImageButton Source="location.png"
-                 CornerRadius="25"
-                 HeightRequest="80"
-                 WidthRequest="60"
-                 Grid.Column="1"
-                 VerticalOptions="Center"
-                 Padding="12,0,0,0" />
-        </Grid>
+        <!--  Favorite Items List  -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="15" Spacing="10">
+                <CollectionView ItemsSource="{Binding MenuItems}" SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems Mode="Reveal">
+                                        <SwipeItem
+                                            BackgroundColor="White"
+                                            Command="{Binding DeleteCommand}"
+                                            IconImageSource="trash_icon.png" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
 
+                                <Border
+                                    Padding="10"
+                                    BackgroundColor="White"
+                                    Stroke="#E5E5E5"
+                                    StrokeShape="RoundRectangle 15"
+                                    StrokeThickness="1">
 
-        <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
-            <VerticalStackLayout Padding="15" Spacing="12">
-                <Border Stroke="#E5E5E5" StrokeThickness="1"
-                        BackgroundColor="#F9F9F9" 
-                        StrokeShape="RoundRectangle 15"
-                        Padding="10">
-                    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12">
-                        <Image Source="gotcha.png" VerticalOptions="Fill" HorizontalOptions="Fill"
-                               Grid.RowSpan="2" />
+                                    <Grid
+                                        ColumnDefinitions="Auto,*,Auto"
+                                        ColumnSpacing="12"
+                                        VerticalOptions="Center">
 
-                        <Label Text="Gotcha"
-                               FontAttributes="Bold"
-                               FontSize="16"
-                               TextColor="Black"
-                               Grid.Column="1" />
-
-                        <Image Source="arrow.png"
-                               HeightRequest="20"
-                               WidthRequest="20"
-                               Grid.Column="2"
-                               Grid.RowSpan="1"
-                               VerticalOptions="Center" />
-
-                        <StackLayout Orientation="Horizontal"
-                                     Spacing="4"
-                                     Grid.Column="1"
-                                     Grid.Row="1">
-                            <Image Source="star48.png" HeightRequest="44" WidthRequest="104" />
-                        </StackLayout>
-                    </Grid>
-                </Border>
-                <Border Stroke="#E5E5E5" StrokeThickness="1"
-                        BackgroundColor="#F9F9F9"
-                        StrokeShape="RoundRectangle 15"
-                        Padding="10">
-                    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12">
-                        <CollectionView
-                    Margin="0"
-                    ItemsSource="{Binding MenuItems}"
-                    SelectionMode="None">
-                            <CollectionView.ItemsLayout>
-                                <GridItemsLayout
-                            HorizontalItemSpacing="5"
-                            Orientation="Vertical"
-                            Span="2"
-                            VerticalItemSpacing="5" />
-                            </CollectionView.ItemsLayout>
-
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Border
-                                Margin="5"
-                                Padding="5"
-                                BackgroundColor="#F9F9F9"
-                                BindingContext="{Binding .}"
-                                HorizontalOptions="Center"
-                                Stroke="#E5E5E5"
-                                StrokeShape="RoundRectangle 20"
-                                StrokeThickness="1"
-                                WidthRequest="160">
-                                        <VerticalStackLayout Spacing="5">
-
-                                            <!--  Image with Favorite Icon Overlay  -->
-                                            <Grid HeightRequest="120" WidthRequest="160">
-                                                <Image
-                                            Aspect="AspectFit"
-                                            HeightRequest="120"
+                                        <!--  Image  -->
+                                        <Image
+                                            HeightRequest="60"
                                             Source="{Binding Image}"
-                                            WidthRequest="160" />
+                                            VerticalOptions="Center"
+                                            WidthRequest="60" />
 
-                                                <Image
-                                            Margin="9"
-                                            HeightRequest="24"
-                                            HorizontalOptions="End"
-                                            Source="{Binding FavoriteImage}"
-                                            VerticalOptions="Start"
-                                            WidthRequest="24">
-                                                    <Image.GestureRecognizers>
-                                                        <TapGestureRecognizer Command="{Binding ToggleFavoriteCommand}" />
-                                                    </Image.GestureRecognizers>
-                                                </Image>
-                                            </Grid>
-
-                                            <!--  Name, Price, Add Button  -->
-                                            <Grid Padding="10" ColumnDefinitions="*,Auto">
-                                                <VerticalStackLayout Grid.Column="0" Spacing="2">
-                                                    <Label
+                                        <!--  Text Info  -->
+                                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                            <Label
                                                 FontAttributes="Bold"
                                                 FontSize="16"
                                                 Text="{Binding Name}"
                                                 TextColor="Black" />
-                                                    <Label
+                                            <Label
                                                 FontSize="14"
-                                                Text="{Binding Price, StringFormat='{}{0}$'}"
+                                                Text="{Binding Price, StringFormat='{}{0} AMD'}"
                                                 TextColor="Gray" />
-                                                </VerticalStackLayout>
-
-                                                <Border
-                                            Grid.Column="2"
-                                            Padding="0"
-                                            BackgroundColor="#CB8A58"
-                                            HeightRequest="30"
-                                            HorizontalOptions="End"
-                                            Stroke="Transparent"
-                                            StrokeShape="RoundRectangle 12"
-                                            VerticalOptions="Center"
-                                            WidthRequest="30">
-                                                    <Label
-                                                FontSize="20"
-                                                HorizontalOptions="Center"
-                                                Text="+"
-                                                TextColor="White"
-                                                VerticalOptions="Center" />
-                                                </Border>
-                                            </Grid>
                                         </VerticalStackLayout>
-                                    </Border>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                        <Image Source="coffehouse.png"
-                               VerticalOptions="Fill" HorizontalOptions="Fill"
-                               Grid.RowSpan="2" />
-
-                        <Label Text="Coffee House"
-                               FontAttributes="Bold"
-                               FontSize="16"
-                               TextColor="Black"
-                               Grid.Column="1" />
-
-                        <Image Source="arrow.png"
-                               HeightRequest="20"
-                               WidthRequest="20"
-                               Grid.Column="2"
-                               Grid.RowSpan="1"
-                               VerticalOptions="Center" />
-
-                        <StackLayout Orientation="Horizontal"
-                                     Spacing="4"
-                                     Grid.Column="1"
-                                     Grid.Row="1">
-                            <Image Source="star48.png" HeightRequest="44" WidthRequest="104" />
-                        </StackLayout>
-                    </Grid>
-                </Border>
-                <Border Stroke="#E5E5E5" StrokeThickness="1"
-                        BackgroundColor="#F9F9F9"
-                        StrokeShape="RoundRectangle 15"
-                        Padding="10">
-                    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12">
-                        <Image Source="cofix.png"
-                               VerticalOptions="Fill" HorizontalOptions="Fill"
-                               Grid.RowSpan="2" />
-
-                        <Label Text="Cofix"
-                               FontAttributes="Bold"
-                               FontSize="16"
-                               TextColor="Black"
-                               Grid.Column="1" />
-
-                        <!--<Image Source="arrow.png"
-                               HeightRequest="20"
-                               WidthRequest="20"
-                               Grid.Column="2"
-                               Grid.RowSpan="1"
-                               VerticalOptions="Center" >
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnArrowTapped" />
-                            </Image.GestureRecognizers>
-                        </Image>-->
-
-                        <StackLayout Orientation="Horizontal"
-                                     Spacing="4"
-                                     Grid.Column="1"
-                                     Grid.Row="1">
-                            <Image Source="star48.png" HeightRequest="44" WidthRequest="104" />
-                        </StackLayout>
-                    </Grid>
-                </Border>
-                <Border Stroke="#E5E5E5" StrokeThickness="1"
-                        BackgroundColor="#F9F9F9"
-                        StrokeShape="RoundRectangle 15"
-                        Padding="10">
-                    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12">
-                        <Image Source="prepa.png"
-                               VerticalOptions="Fill" HorizontalOptions="Fill"
-                               Grid.RowSpan="2" />
-
-                        <Label Text="Prepa"
-                               FontAttributes="Bold"
-                               FontSize="16"
-                               TextColor="Black"
-                               Grid.Column="1" />
-
-                        <Image Source="arrow.png"
-                               HeightRequest="20"
-                               WidthRequest="20"
-                               Grid.Column="2"
-                               Grid.RowSpan="1"
-                               VerticalOptions="Center" />
-
-                        <StackLayout Orientation="Horizontal"
-                                     Spacing="4"
-                                     Grid.Column="1"
-                                     Grid.Row="1">
-                            <Image Source="star48.png" HeightRequest="44" WidthRequest="104" />
-                        </StackLayout>
-                    </Grid>
-                </Border>
-                <Border Stroke="#E5E5E5" StrokeThickness="1"
-                        BackgroundColor="#F9F9F9"
-                        StrokeShape="RoundRectangle 15"
-                        Padding="10">
-                    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12">
-                        <Image Source="music.png"
-                               VerticalOptions="Fill" HorizontalOptions="Fill"
-                               Grid.RowSpan="2" />
-
-                        <Label Text="Coffee Music"
-                               FontAttributes="Bold"
-                               FontSize="16"
-                               TextColor="Black"
-                               Grid.Column="1" />
-
-                        <Image Source="arrow.png"
-                               HeightRequest="20"
-                               WidthRequest="20"
-                               Grid.Column="2"
-                               Grid.RowSpan="1"
-                               VerticalOptions="Center" />
-
-                        <StackLayout Orientation="Horizontal"
-                                     Spacing="4"
-                                     Grid.Column="1"
-                                     Grid.Row="1">
-                            <Image Source="star48.png" HeightRequest="44" WidthRequest="104" />
-                        </StackLayout>
-                    </Grid>
-                </Border>
+                                    </Grid>
+                                </Border>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </VerticalStackLayout>
         </ScrollView>
 
-        <!--<controls:BottomNavBar x:Name="NavBar" Grid.Row="2" />-->
+        <!--  Bottom Navigation Bar (Already created, just add here)  -->
+        <!--<controls:BottomNavBar Grid.Row="2"/>-->
     </Grid>
-
 </ContentPage>
