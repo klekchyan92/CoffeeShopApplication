@@ -5,20 +5,27 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:CoffeeShopApplication.Controls"
     xmlns:local="clr-namespace:CoffeeShopApplication"
-    Title=""
+    Shell.NavBarIsVisible="False"
     BackgroundColor="White">
 
     <Grid RowDefinitions="Auto,*,Auto">
 
         <!--  Search Bar  -->
         <StackLayout Padding="15,20,15,10">
-            <Border BackgroundColor="#F4F4F4" StrokeShape="RoundRectangle 20">
+            <Border
+    BackgroundColor="#F4F4F4"
+    HeightRequest="50"
+    StrokeShape="RoundRectangle 50"
+    StrokeThickness="1"
+    VerticalOptions="Center">
                 <SearchBar
-                    BackgroundColor="White"
-                    CancelButtonColor="#CB8A58"
-                    FontSize="14"
-                    HeightRequest="45"
-                    Placeholder="Search .." />
+        BackgroundColor="White"
+        CancelButtonColor="#CB8A58"
+        FontSize="14"
+        HeightRequest="50"
+        HorizontalOptions="Fill"
+        Placeholder="Search .."
+        VerticalOptions="Center" />
             </Border>
         </StackLayout>
 
@@ -38,7 +45,7 @@
                                     </SwipeItems>
                                 </SwipeView.RightItems>
 
-                                <Border
+                                <Border Margin="0,5"
                                     Padding="10"
                                     BackgroundColor="White"
                                     Stroke="#E5E5E5"

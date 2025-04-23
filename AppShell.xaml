@@ -20,7 +20,7 @@
         <ShellContent
             Title="Favorite"
             ContentTemplate="{DataTemplate local:FavoritePage}"
-            Icon="cart_icon.png"
+            Icon="favourite_icon.png"
             Route="favorites" />
 
         <ShellContent

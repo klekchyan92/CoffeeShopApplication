@@ -1,11 +1,13 @@
 using CoffeeShopApplication.Controls;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace CoffeeShopApplication;
 
 public partial class CartPage : ContentPage
 {
     public ObservableCollection<CartItem> CartItems { get; set; } = new();
+    public ICommand DeleteCommand { get; }
 
     public CartPage()
     {
@@ -14,13 +16,14 @@ public partial class CartPage : ContentPage
 
         CartItems.Add(new CartItem { Image = "affogato.png", Name = "Affogato Coffee", Price = 800, Quantity = 1 });
         CartItems.Add(new CartItem { Image = "flat_white.png", Name = "Flat White", Price = 900, Quantity = 1 });
+        DeleteCommand = new Command<CartItem>(OnDeleteItem);
 
         UpdateTotal();
     }
 
     private void OnIncreaseQuantityClicked(object sender, EventArgs e)
     {
-        if ((sender as Button)?.BindingContext is CartItem item)
+        if ((sender as Border)?.BindingContext is CartItem item)
         {
             item.Quantity++;
             UpdateTotal();
@@ -29,7 +32,7 @@ public partial class CartPage : ContentPage
 
     private void OnDecreaseQuantityClicked(object sender, EventArgs e)
     {
-        if ((sender as Button)?.BindingContext is CartItem item)
+        if ((sender as Border)?.BindingContext is CartItem item)
         {
             if (item.Quantity > 1)
             {
@@ -39,9 +42,9 @@ public partial class CartPage : ContentPage
         }
     }
 
-    private void OnDeleteItemClicked(object sender, EventArgs e)
+    private void OnDeleteItem(CartItem item)
     {
-        if ((sender as ImageButton)?.BindingContext is CartItem item)
+        if (item != null)
         {
             CartItems.Remove(item);
             UpdateTotal();

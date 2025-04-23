@@ -4,18 +4,18 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     BackgroundColor="White"
-    NavigationPage.HasNavigationBar="False">
+        Shell.NavBarIsVisible="False">
 
     <ScrollView>
         <VerticalStackLayout
             Padding="20"
-            HorizontalOptions="Center"
+            HorizontalOptions="Fill"
             Spacing="20">
 
             <!-- Profile Image -->
             <Image
                 Margin="0,30,0,0"
-                Aspect="AspectFill"
+                Aspect="Fill"
                 HeightRequest="100"
                 WidthRequest="100"
                 HorizontalOptions="Center"
@@ -37,87 +37,136 @@
                 TextColor="Gray" />
 
             <!-- Settings Rows -->
-            <VerticalStackLayout Spacing="12" WidthRequest="300">
+            <VerticalStackLayout Spacing="8" HorizontalOptions="Fill">
 
                 <!-- Edit Profile -->
-                <Grid Style="{StaticResource SettingsRowStyle}">
-                    <Label Text="Edit Profile"
-                           VerticalOptions="Center"
-                           FontSize="14"
-                           TextColor="Black" />
-                    <Image Source="white_arrow.png"
-                           Grid.Column="1"
-                           HeightRequest="18"
-                           WidthRequest="18"
-                           VerticalOptions="Center" />
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnEditProfileClicked" />
-                    </Grid.GestureRecognizers>
-                </Grid>
+                <Border Margin="0,5" HeightRequest="48"
+                        Padding="10"
+                        BackgroundColor="White"
+                        Stroke="#E5E5E5"
+                        StrokeShape="RoundRectangle 25"
+                        StrokeThickness="1">
 
-                <!-- Bank Cards -->
-                <Grid Style="{StaticResource SettingsRowStyle}">
-                    <Label Text="Bank Cards"
-                           VerticalOptions="Center"
-                           FontSize="14"
-                           TextColor="Black" />
-                    <Image Source="white_arrow.png"
-                           Grid.Column="1"
-                           HeightRequest="18"
-                           WidthRequest="18"
-                           VerticalOptions="Center" />
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnBankCardsClicked" />
-                    </Grid.GestureRecognizers>
-                </Grid>
+                    <Grid Margin="6,0">
+                        <Label Text="Edit Profile"
+                               VerticalOptions="Center"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="Black" />
+                        <Image Source="white_arrow.png"
+                               Grid.Column="1"
+                               HeightRequest="13"
+                               WidthRequest="8"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnEditProfileClicked" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Border>
 
+                <Border Margin="0,5" HeightRequest="48"
+                        Padding="10"
+                        BackgroundColor="White"
+                        Stroke="#E5E5E5"
+                        StrokeShape="RoundRectangle 25"
+                        StrokeThickness="1">
+
+                    <Grid Margin="6,0">
+                        <Label Text="Bank Cards"
+                               VerticalOptions="Center"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="Black" />
+                        <Image Source="white_arrow.png"
+                               Grid.Column="1"
+                               HeightRequest="13"
+                               WidthRequest="8"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBankCardsClicked" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Border>
                 <!-- Order History -->
-                <Grid Style="{StaticResource SettingsRowStyle}">
-                    <Label Text="Order History"
-                           VerticalOptions="Center"
-                           FontSize="14"
-                           TextColor="Black" />
-                    <Image Source="white_arrow.png"
-                           Grid.Column="1"
-                           HeightRequest="18"
-                           WidthRequest="18"
-                           VerticalOptions="Center" />
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnOrderHistoryClicked" />
-                    </Grid.GestureRecognizers>
-                </Grid>
+
+                <Border Margin="0,5" HeightRequest="48"
+                        Padding="10"
+                        BackgroundColor="White"
+                        Stroke="#E5E5E5"
+                        StrokeShape="RoundRectangle 25"
+                        StrokeThickness="1">
+
+                    <Grid Margin="6,0">
+                        <Label Text="Order History"
+                               VerticalOptions="Center"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="Black" />
+                        <Image Source="white_arrow.png"
+                               Grid.Column="1"
+                               HeightRequest="13"
+                               WidthRequest="8"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnOrderHistoryClicked" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Border>
 
                 <!-- Push Notifications -->
-                <Grid Style="{StaticResource SettingsRowStyle}">
-                    <Label Text="Push Notifications"
-                           VerticalOptions="Center"
-                           FontSize="14"
-                           TextColor="Black" />
-                    <Switch Grid.Column="1"
+                <Border Margin="0,5" HeightRequest="48"
+                        Padding="10,0"
+                        BackgroundColor="White"
+                        Stroke="#E5E5E5"
+                        StrokeShape="RoundRectangle 25"
+                        StrokeThickness="1">
+
+                    <Grid Margin="6,0">
+                        <Label Text="Push Notifications"
+                               VerticalOptions="Center"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="Black" />
+                        <Switch Grid.Column="1"
                             IsToggled="{Binding IsPushEnabled}"
-                            OnColor="#CB8A58"
+                                ThumbColor="#CB8A58"    
+                            OnColor="#E8E4E1"
                             VerticalOptions="Center" />
-                </Grid>
+                    </Grid>
+                </Border>
 
                 <!-- Language -->
-                <Grid Style="{StaticResource SettingsRowStyle}">
-                    <Label Text="Language"
-                           VerticalOptions="Center"
-                           FontSize="14"
-                           TextColor="Black" />
-                    <Image Source="white_arrow.png"
-                           Grid.Column="1"
-                           HeightRequest="18"
-                           WidthRequest="18"
-                           VerticalOptions="Center" />
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnLanguageClicked" />
-                    </Grid.GestureRecognizers>
-                </Grid>
+                <Border Margin="0,5" HeightRequest="48"
+                        Padding="10"
+                        BackgroundColor="White"
+                        Stroke="#E5E5E5"
+                        StrokeShape="RoundRectangle 60"
+                        StrokeThickness="1">
+
+                    <Grid Margin="6,0">
+                        <Label Text="Language"
+                               VerticalOptions="Center"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="Black" />
+                        <Image Source="white_arrow.png"
+                               Grid.Column="1"
+                               HeightRequest="13"
+                               WidthRequest="8"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLanguageClicked" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Border>
             </VerticalStackLayout>
 
             <!-- Logout -->
-            <HorizontalStackLayout HorizontalOptions="Center">
+            <HorizontalStackLayout HorizontalOptions="End">
                 <Label
                     FontAttributes="Bold"
                     FontSize="14"
@@ -125,10 +174,10 @@
                     TextColor="#CB8A58"
                     VerticalOptions="Center" />
                 <Image
-                    Margin="5,0,0,0"
+                    Margin="5,0,5,0"
                     HeightRequest="18"
                     WidthRequest="18"
-                    Source="logout_icon.png"
+                    Source="logout.png"
                     VerticalOptions="Center" />
             </HorizontalStackLayout>
         </VerticalStackLayout>

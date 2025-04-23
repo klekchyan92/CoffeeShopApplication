@@ -17,95 +17,126 @@
 
         <!--  Список товаров  -->
         <CollectionView
-            x:Name="CartItemsCollectionView"
-            Grid.Row="1"
-            ItemsSource="{Binding CartItems}"
-            SelectionMode="None">
+    x:Name="CartItemsCollectionView"
+    Grid.Row="1"
+    ItemsSource="{Binding CartItems}"
+    SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Border
-                        Margin="0,5"
-                        Padding="10"
-                        BackgroundColor="White"
-                        StrokeShape="RoundRectangle 10"
-                        StrokeThickness="1">
-                        <Grid
-                            Padding="5"
-                            ColumnDefinitions="Auto,*,Auto"
-                            RowDefinitions="Auto,Auto">
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems Mode="Reveal">
+                                <SwipeItemView>
+                                    <Grid
+                BackgroundColor="Transparent"
+                Padding="10">
+                                        <Image
+                    Source="trash.png"
+                    HeightRequest="24"
+                    WidthRequest="24"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer
+                            Command="{Binding BindingContext.DeleteCommand, Source={x:Reference CartItemsCollectionView}}"
+                            CommandParameter="{Binding .}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </Grid>
+                                </SwipeItemView>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
 
-                            <!--  Фото товара  -->
-                            <Image
-                                Grid.RowSpan="2"
-                                Margin="0,0,10,0"
-                                Aspect="AspectFill"
-                                HeightRequest="60"
-                                Source="{Binding Image}"
-                                WidthRequest="60" />
 
-                            <!--  Название  -->
-                            <Label
-                                Grid.Column="1"
-                                FontAttributes="Bold"
-                                FontSize="16"
-                                Text="{Binding Name}"
-                                TextColor="Black" />
+                        <Border
+                    Margin="0,5"
+                    Padding="10"
+                    BackgroundColor="White"
+                    StrokeShape="RoundRectangle 10"
+                    StrokeThickness="1">
+                            <Grid
+                        Padding="5"
+                        ColumnDefinitions="Auto,*,Auto"
+                        RowDefinitions="Auto,Auto">
 
-                            <!--  Цена + Количество + Кнопки  -->
-                            <HorizontalStackLayout
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Spacing="8"
-                                VerticalOptions="Center">
+                                <!-- Фото товара -->
+                                <Image Margin="0,0,10,0"
+                               Grid.RowSpan="2"
+                               Aspect="AspectFill"
+                               Source="{Binding Image}" />
+
+                                <!-- Название -->
                                 <Label
-                                    FontSize="14"
-                                    Text="{Binding Price, StringFormat='{0} AMD'}"
-                                    TextColor="Gray"
-                                    VerticalOptions="Center" />
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Text="{Binding Name}"
+                            TextColor="Black" />
 
-                                <Button
-                                    BackgroundColor="#E0E0E0"
-                                    Clicked="OnDecreaseQuantityClicked"
-                                    CornerRadius="15"
-                                    FontSize="18"
-                                    HeightRequest="30"
-                                    Text="-"
-                                    TextColor="Black"
-                                    WidthRequest="30" />
+                                <!-- Цена + Кол-во + Кнопки -->
+                                <HorizontalStackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Spacing="8"
+                            VerticalOptions="Center">
+                                    <Label
+                                FontSize="14"
+                                Text="{Binding Price, StringFormat='{0} AMD'}"
+                                TextColor="Gray"
+                                VerticalOptions="Center" />
 
-                                <Label
-                                    FontSize="14"
-                                    Text="{Binding Quantity}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center" />
+                                    <Border
+    WidthRequest="22"
+    HeightRequest="22"
+    StrokeShape="RoundRectangle 50"
+    BackgroundColor="#E0E0E0"
+    HorizontalOptions="Center"
+    VerticalOptions="Center">
 
-                                <Button
-                                    BackgroundColor="#CB8A58"
-                                    Clicked="OnIncreaseQuantityClicked"
-                                    CornerRadius="15"
-                                    FontSize="18"
-                                    HeightRequest="30"
-                                    Text="+"
-                                    TextColor="White"
-                                    WidthRequest="30" />
-                            </HorizontalStackLayout>
+                                        <Label Text="−"
+           FontSize="14"
+           TextColor="Black"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
 
-                            <!--  Кнопка удалить (справа)  -->
-                            <ImageButton
-                                Grid.RowSpan="2"
-                                Grid.Column="2"
-                                BackgroundColor="Transparent"
-                                Clicked="OnDeleteItemClicked"
-                                HeightRequest="32"
-                                HorizontalOptions="End"
-                                Source="delete_icon.png"
-                                VerticalOptions="Center"
-                                WidthRequest="32" />
-                        </Grid>
-                    </Border>
+                                        <Border.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnDecreaseQuantityClicked" />
+                                        </Border.GestureRecognizers>
+                                    </Border>
+
+                                    <Label
+                                FontSize="14"
+                                Text="{Binding Quantity}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+
+                                    <Border
+    WidthRequest="22"
+    HeightRequest="22"
+    StrokeShape="RoundRectangle 50"
+    BackgroundColor="Black"
+    HorizontalOptions="Center"
+    VerticalOptions="Center">
+
+                                        <Label Text="+"
+           FontSize="14"
+           TextColor="White"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+
+                                        <Border.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnIncreaseQuantityClicked" />
+                                        </Border.GestureRecognizers>
+                                    </Border>
+                                </HorizontalStackLayout>
+
+                            </Grid>
+                        </Border>
+                    </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
 
         <!--  Итого и кнопка  -->
         <VerticalStackLayout Grid.Row="2" Spacing="20">
@@ -120,29 +151,42 @@
                 TextColor="Black" />
 
             <!--  Кнопка Checkout  -->
-            <Button
-                Clicked="OnCheckoutClicked"
-                CornerRadius="30"
-                FontAttributes="Bold"
-                HeightRequest="55"
-                Text="Go to Checkout"
-                TextColor="White">
-                <Button.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                        <GradientStop Offset="0.0" Color="#CB8A58" />
-                        <GradientStop Offset="1.0" Color="#562B1A" />
-                    </LinearGradientBrush>
-                </Button.Background>
+            <Border
+    StrokeThickness="0"
+    BackgroundColor="Transparent"
+    HeightRequest="55"
+    StrokeShape="RoundRectangle 30">
 
+                <Grid>
+                    <Grid.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Offset="0.0" Color="#CB8A58" />
+                            <GradientStop Offset="1.0" Color="#562B1A" />
+                        </LinearGradientBrush>
+                    </Grid.Background>
 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                <Button.ImageSource>
-                    <FontImageSource
-                        Glyph="→"
-                        Size="20"
-                        Color="White" />
-                </Button.ImageSource>
-            </Button>
+                    <Label
+            Text="Go to Checkout"
+            FontAttributes="Bold"
+            VerticalOptions="Center"
+            TextColor="White"
+            Margin="20,0" />
+                    <Image  HeightRequest="24" WidthRequest="24"
+                         Margin="0,0,20,0"
+            Grid.Column="1"
+            VerticalOptions="Center"
+                              Source="arrowright.png"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCheckoutClicked" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+            </Border>
+
 
         </VerticalStackLayout>
 
