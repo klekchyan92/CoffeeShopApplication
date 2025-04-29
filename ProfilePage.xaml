@@ -178,7 +178,9 @@
                     HeightRequest="18"
                     WidthRequest="18"
                     Source="logout.png"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center" >
+                </Image>
+
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

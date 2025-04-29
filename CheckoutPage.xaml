@@ -125,8 +125,8 @@
 
         <!-- Адрес -->
         <HorizontalStackLayout Spacing="5">
-            <Image Source="location_icon.png" WidthRequest="20" HeightRequest="20"/>
-            <Label Text="Մարյան 1Ի" FontAttributes="Bold" FontSize="14" TextColor="Black"/>
+            <Image Source="locationfilled.png" WidthRequest="20" HeightRequest="20"/>
+            <Label Text="Սարյան 1Ա" FontAttributes="Bold" FontSize="14" TextColor="Black"/>
         </HorizontalStackLayout>
 
         <!-- Payment method -->

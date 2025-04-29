@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="CoffeeShopApplication.MainPage"
     Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False"
     NavigationPage.HasNavigationBar="False"
     BackgroundColor="White">
 

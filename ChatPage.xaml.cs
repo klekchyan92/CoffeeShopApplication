@@ -1,85 +1,102 @@
 ﻿using CoffeeShopApplication.Controls;
 using System.Collections.ObjectModel;
 
-namespace CoffeeShopApplication;
-
-public partial class ChatPage : ContentPage
+namespace CoffeeShopApplication
 {
-    public ObservableCollection<ChatItem> Messages { get; set; } = new();
-    public List<string> Questions { get; set; } = new();
-    private bool isFirstQuestion = true; // ⬅️ добавляем флаг
-
-    public ChatPage()
+    public partial class ChatPage : ContentPage
     {
-        InitializeComponent();
+        public ObservableCollection<ChatItem> Messages { get; set; } = new();
+        public List<string> Questions { get; set; } = new();
+        private Dictionary<string, string> Answers { get; set; } = new();
+        private bool isFirstQuestion = true;
 
-        // Инициализация данных
-        Questions = new List<string>
+        public ChatPage()
         {
-            "Ինչպե՞ս կարող եմ օգտվել ձեր ծառայություններից:",
-            "Կա՞ հատուկ առաջարկներ կամ զեղչեր:",
-            "Կարո՞ղ եմ նախապես պատվիրել կոկտեյլներ:",
-            "Անվճար տրանզակցիաներ և արագ առաքում:"
-        };
+            InitializeComponent();
 
-        // Привязки
-        MessagesCollectionView.ItemsSource = Messages;
-        QuestionsCollectionView.ItemsSource = Questions;
-    }
-
-    private void QuestionsCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (e.CurrentSelection.FirstOrDefault() is string selectedQuestion)
-        {
-            // Добавляем сообщение-вопрос
-            Messages.Add(new ChatItem { Text = selectedQuestion, IsQuestion = true });
-
-            // Добавляем сообщение-ответ
-            string answer = GetBotAnswer(selectedQuestion);
-            Messages.Add(new ChatItem { Text = answer, IsQuestion = false });
-
-            // Очистить выбор
-            QuestionsCollectionView.SelectedItem = null;
-
-            // Если это первый вопрос — скрываем список вопросов
-            if (isFirstQuestion)
+            // Инициализация данных
+            Questions = new List<string>
             {
-                isFirstQuestion = false;
-                QuestionsCollectionView.IsVisible = false;
-            }
+                "Ի՞նչ սուրճ եք խորհուրդ տալիս այսօր փորձել:",
+                "Կա՞ հատուկ առաջարկներ կամ զեղչեր:",
+                "Կարո՞ղ եմ իմանալ սուրճի կալորիականությունը:",
+                "Կա՞ լակտոզայից ազատ կամ վեգան տարբերակ:",
+                "Առաջարկիր սուրճ էսպրեսսոյի հումքով:",
+                "Առաջարկիր կոֆեինից զուրկ տարբերակ:",
+                "Ինչպե՞ս ստեղծել իմ սեփական սուրճի տարբերակը:",
+                "Կա՞ն սրճարաններ իմ տարածքում:"
+            };
 
-            // Прокрутить вниз
-            MessagesCollectionView.ScrollTo(Messages.Last(), position: ScrollToPosition.End, animate: true);
+            Answers = new Dictionary<string, string>
+            {
+                { "Ի՞նչ սուրճ եք խորհուրդ տալիս այսօր փորձել:", "Այսօր խորհուրդ եմ տալիս փորձել մեր հատուկ վանիլային լատտեն։" },
+                { "Կա՞ հատուկ առաջարկներ կամ զեղչեր:", "Այո՛, ունենք 10% զեղչ մեծ չափի կապուչինոների համար։" },
+                { "Կարո՞ղ եմ իմանալ սուրճի կալորիականությունը:", "Օրինակ, դասական կապուչինոն ունի մոտ 120 կկալ։" },
+                { "Կա՞ լակտոզայից ազատ կամ վեգան տարբերակ:", "Այո՛, առաջարկում ենք նուշի, գետնանուշի և վարսակի կաթով տարբերակներ։" },
+                { "Առաջարկիր սուրճ էսպրեսսոյի հումքով:", "Խորհուրդ եմ տալիս ամերիկանո կամ մակիատո՝ պատրաստված թարմ էսպրեսսոյով։" },
+                { "Առաջարկիր կոֆեինից զուրկ տարբերակ:", "Մենք առաջարկում ենք կոֆեինազուրկ էսպրեսսո, լատտե և կապուչինո։" },
+                { "Ինչպե՞ս ստեղծել իմ սեփական սուրճի տարբերակը:", "Ընտրեք հիմքը, կաթը և ավելացրեք սիրած հավելումները՝ վանիլ, կարամել կամ դարչին։" },
+                { "Կա՞ն սրճարաններ իմ տարածքում:", "Խնդրում եմ նշեք ձեր գտնվելու վայրը, և ես կօգնեմ գտնել մոտակա սրճարանները։" }
+            };
+
+            MessagesCollectionView.ItemsSource = Messages;
+            QuestionsCollectionView.ItemsSource = Questions;
         }
-    }
 
-    private void SendMessageButton_Clicked(object sender, EventArgs e)
-    {
-        string userMessage = UserMessageEntry.Text?.Trim();
-        QuestionsCollectionView.IsVisible = false;
-
-        if (!string.IsNullOrEmpty(userMessage))
+        private void QuestionsCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Отправка своего сообщения
-            Messages.Add(new ChatItem { Text = userMessage, IsQuestion = true });
+            if (e.CurrentSelection.FirstOrDefault() is string selectedQuestion)
+            {
+                Messages.Add(new ChatItem { Text = selectedQuestion, IsQuestion = true });
 
-            // Симуляция ответа бота
-            string botResponse = GetBotAnswer(userMessage);
-            Messages.Add(new ChatItem { Text = botResponse, IsQuestion = false });
+                string answer = GetBotAnswer(selectedQuestion);
+                Messages.Add(new ChatItem { Text = answer, IsQuestion = false });
 
-            UserMessageEntry.Text = string.Empty;
+                QuestionsCollectionView.SelectedItem = null;
 
-            ScrollToLastMessage();
+                if (isFirstQuestion)
+                {
+                    isFirstQuestion = false;
+                    QuestionsCollectionView.IsVisible = false;
+                }
+
+                MessagesCollectionView.ScrollTo(Messages.Last(), position: ScrollToPosition.End, animate: true);
+            }
         }
-    }
-    private void ScrollToLastMessage()
-    {
-        if (Messages.Any())
-            MessagesCollectionView.ScrollTo(Messages.Last(), position: ScrollToPosition.End, animate: true);
-    }
-    private string GetBotAnswer(string question)
-    {
-        // Здесь можно добавить разные ответы под каждый вопрос
-        return "Սա Ձեր հարցի պատասխանն է։ Շնորհակալություն:";
+
+        private void SendMessageButton_Clicked(object sender, EventArgs e)
+        {
+            string userMessage = UserMessageEntry.Text?.Trim();
+            QuestionsCollectionView.IsVisible = false;
+
+            if (!string.IsNullOrEmpty(userMessage))
+            {
+                Messages.Add(new ChatItem { Text = userMessage, IsQuestion = true });
+
+                string botResponse = GetBotAnswer(userMessage);
+                Messages.Add(new ChatItem { Text = botResponse, IsQuestion = false });
+
+                UserMessageEntry.Text = string.Empty;
+
+                ScrollToLastMessage();
+            }
+        }
+
+        private void ScrollToLastMessage()
+        {
+            if (Messages.Any())
+                MessagesCollectionView.ScrollTo(Messages.Last(), position: ScrollToPosition.End, animate: true);
+        }
+
+        private string GetBotAnswer(string question)
+        {
+            switch (question)
+            {
+                case var q when Answers.ContainsKey(q):
+                    return Answers[q];
+                default:
+                    return "Կներեք, ես դեռ չունեմ պատասխան այդ հարցի համար։ 🙏";
+            }
+        }
     }
 }

@@ -68,7 +68,11 @@
                             HeightRequest="20"
                             Source="arrow.png"
                             VerticalOptions="Center"
-                            WidthRequest="20" />
+                            WidthRequest="20">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnArrowTapped" CommandParameter="Gotcha" />
+                            </Image.GestureRecognizers>
+                        </Image>
 
                         <StackLayout
                             Grid.Row="1"
@@ -156,7 +160,7 @@
                             VerticalOptions="Center"
                             WidthRequest="20">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnArrowTapped" />
+                                <TapGestureRecognizer Tapped="OnArrowTapped" CommandParameter="Cofix" />
                             </Image.GestureRecognizers>
                         </Image>
 
@@ -201,7 +205,11 @@
                             HeightRequest="20"
                             Source="arrow.png"
                             VerticalOptions="Center"
-                            WidthRequest="20" />
+                            WidthRequest="20">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnArrowTapped" CommandParameter="Prepa" />
+                            </Image.GestureRecognizers>
+                        </Image>
 
                         <StackLayout
                             Grid.Row="1"

@@ -21,7 +21,7 @@
             Margin="-10,0,0,0"
             HeightRequest="50"
             HorizontalOptions="Start"
-            Source="prepa.png"
+            Source="{Binding Logo}"
             VerticalOptions="Center"
             WidthRequest="80" />
     </Shell.TitleView>
@@ -86,7 +86,7 @@
                     <Image
                         Aspect="AspectFill"
                         Opacity="1"
-                        Source="prepabackground.png" />
+                        Source="{Binding BackgroundImage}" />
 
                     <!--  Контент: очки + qr  -->
                     <Grid Padding="10" ColumnDefinitions="*,Auto">
@@ -154,11 +154,6 @@
                                             HorizontalOptions="Center"
                                             Spacing="5"
                                             VerticalOptions="Center">
-                                            <Image
-                                                HeightRequest="24"
-                                                Source="{Binding Icon}"
-                                                VerticalOptions="Center"
-                                                WidthRequest="24" />
                                             <Label
                                                 FontSize="14"
                                                 Text="{Binding Name}"
@@ -221,32 +216,33 @@
                                 <VerticalStackLayout Spacing="5">
 
                                     <!--  Image with Favorite Icon Overlay  -->
-                                    <Grid HeightRequest="120" WidthRequest="160">
-                                        <Image
-                                            Aspect="AspectFit"
-                                            HeightRequest="120"
-                                            Source="{Binding Image}"
-                                            WidthRequest="160" />
 
+                                    <Grid HeightRequest="120" WidthRequest="160">
+                                        <Border StrokeShape="RoundRectangle 20" StrokeThickness="0" BackgroundColor="Transparent">
+                                            <Image 
+                                                Aspect="Fill"
+                                                Source="{Binding Image}" />
+                                        </Border>
                                         <Image
                                             Margin="9"
                                             HeightRequest="24"
+                                            WidthRequest="24"
                                             HorizontalOptions="End"
-                                            Source="{Binding FavoriteImage}"
                                             VerticalOptions="Start"
-                                            WidthRequest="24">
+                                            Source="{Binding FavoriteImage}">
                                             <Image.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding ToggleFavoriteCommand}" />
                                             </Image.GestureRecognizers>
                                         </Image>
                                     </Grid>
 
+
                                     <!--  Name, Price, Add Button  -->
                                     <Grid Padding="10" ColumnDefinitions="*,Auto">
                                         <VerticalStackLayout Grid.Column="0" Spacing="2">
                                             <Label
                                                 FontAttributes="Bold"
-                                                FontSize="16"
+                                                FontSize="12"
                                                 Text="{Binding Name}"
                                                 TextColor="Black" />
                                             <Label
@@ -255,22 +251,26 @@
                                                 TextColor="Gray" />
                                         </VerticalStackLayout>
 
-                                        <Border
-                                            Grid.Column="2"
-                                            Padding="0"
-                                            BackgroundColor="#CB8A58"
-                                            HeightRequest="30"
-                                            HorizontalOptions="End"
-                                            Stroke="Transparent"
-                                            StrokeShape="RoundRectangle 12"
-                                            VerticalOptions="Center"
-                                            WidthRequest="30">
-                                            <Label
-                                                FontSize="20"
-                                                HorizontalOptions="Center"
-                                                Text="+"
-                                                TextColor="White"
-                                                VerticalOptions="Center" />
+                                        <Border Grid.Column="2" Margin="0,0,-8,0"
+                                                                                            Padding="0"
+                                                WidthRequest="30"
+                                                HeightRequest="30"
+                                                StrokeShape="RoundRectangle 50"
+                                                BackgroundColor="{Binding Theme.PrimaryColor}"
+                                                HorizontalOptions="End"
+                                                Stroke="Transparent"
+                                                VerticalOptions="Center">
+
+                                            <Label Text="+" FontAttributes="Bold"
+                                                   FontSize="22"
+                                                   TextColor="White"
+                                                   Margin="0,-2,0,0"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center" />
+
+                                            <!--<Border.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnIncreaseQuantityClicked" />
+                                            </Border.GestureRecognizers>-->
                                         </Border>
                                     </Grid>
                                 </VerticalStackLayout>

@@ -45,4 +45,5 @@ public partial class ProfilePage : ContentPage, INotifyPropertyChanged
     {
         // Open language selection
     }
+
 }

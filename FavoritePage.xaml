@@ -38,10 +38,24 @@
                             <SwipeView>
                                 <SwipeView.RightItems>
                                     <SwipeItems Mode="Reveal">
-                                        <SwipeItem
-                                            BackgroundColor="White"
-                                            Command="{Binding DeleteCommand}"
-                                            IconImageSource="trash_icon.png" />
+                                        <SwipeItemView>
+                                            <Grid
+                BackgroundColor="Transparent"
+                Padding="10">
+                                                <Image
+                    Source="trash.png"
+                    HeightRequest="24"
+                    WidthRequest="24"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer
+                            Command="{Binding DeleteCommand}"
+                            CommandParameter="{Binding .}" />
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                            </Grid>
+                                        </SwipeItemView>
                                     </SwipeItems>
                                 </SwipeView.RightItems>
 

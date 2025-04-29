@@ -65,8 +65,9 @@ public partial class CheckoutPage : ContentPage, INotifyPropertyChanged
     protected void OnPropertyChanged(string propertyName) =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-    private void OnCreateOrderClicked(object sender, EventArgs e)
+    private async void OnCreateOrderClicked(object sender, EventArgs e)
     {
+        await Navigation.PushAsync(new SuccessfullOrderPage());
     }
 
     private void UpdateTotal()

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CoffeeShopApplication.SuccessfullOrderPage"
+             BackgroundColor="#2C2C2C"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
+             Title="Successful Order">
+    <VerticalStackLayout
+        Padding="30"
+        Spacing="40"
+        VerticalOptions="Center"
+        HorizontalOptions="Center">
+
+        <!-- Иконка доставки -->
+        <Image Source="carbon_delivery.png" 
+               WidthRequest="100" 
+               HeightRequest="100"
+               HorizontalOptions="Center" />
+
+        <!-- Текст благодарности -->
+        <Label Text="Thank You For Your Order!"
+               TextColor="White"
+               FontSize="20"
+               HorizontalTextAlignment="Center"
+               FontAttributes="Bold" />
+
+        <Label Text="Wait For The Call"
+               TextColor="White"
+               FontSize="16"
+               HorizontalTextAlignment="Center" />
+
+        <!-- Кнопка возврата на главную -->
+        <Button Text="Back to Home"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="30"
+                HeightRequest="50"
+                WidthRequest="200"
+                Clicked="OnBackToHomeClicked">
+            <Button.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#C7925B" Offset="0.0" />
+                    <GradientStop Color="#A86B32" Offset="1.0" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+    </VerticalStackLayout>
+</ContentPage>

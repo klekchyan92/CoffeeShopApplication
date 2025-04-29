@@ -19,7 +19,7 @@ public class MainActivity : MauiAppCompatActivity
 #endif
         });
 
-        SetStatusBarAndNavigationBarColors();
+        //SetStatusBarAndNavigationBarColors();
     }
 
     private void SetStatusBarAndNavigationBarColors()

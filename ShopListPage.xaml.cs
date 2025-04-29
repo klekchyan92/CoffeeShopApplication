@@ -15,15 +15,11 @@ public partial class ShopListPage : ContentPage
 
     private async void OnArrowTapped(object sender, EventArgs e)
     {
-        var theme = new Theme
+        if (sender is Image image && image.GestureRecognizers.FirstOrDefault() is TapGestureRecognizer tap &&
+            tap.CommandParameter is string cafeName)
         {
-            PrimaryColor = Colors.Orange,
-            SecondaryColor = Colors.DarkOrange,
-            BackgroundColor = Colors.White,
-            TextColor = Colors.Black
-        };
-
-        await Navigation.PushAsync(new MenuPage());
+            await Navigation.PushAsync(new MenuPage(cafeName));
+        }
 
         //await Navigation.PushAsync(new CoffeeDetailsPage());
     }

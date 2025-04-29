@@ -1,27 +1,25 @@
-﻿using Microsoft.Maui.Controls.PlatformConfiguration;
+﻿namespace CoffeeShopApplication;
 #if ANDROID
 using Android.Views;
 using AndroidX.Core.View;
 #endif
 
-namespace CoffeeShopApplication
+public partial class SuccessfullOrderPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+	public SuccessfullOrderPage()
+	{
+		InitializeComponent();
+	}
+
+    protected override void OnAppearing()
     {
-        public MainPage()
-        {
-            InitializeComponent();
-        }
+        base.OnAppearing();
+        SetStatusBarAndNavigationBarColors();
+    }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            SetStatusBarAndNavigationBarColors();
-        }
-
-        private void SetStatusBarAndNavigationBarColors()
-        {
-        #if ANDROID
+    private void SetStatusBarAndNavigationBarColors()
+    {
+#if ANDROID
             
                     var window = Platform.CurrentActivity!.Window;
 
@@ -45,17 +43,11 @@ namespace CoffeeShopApplication
                             controller.AppearanceLightNavigationBars = false; // Светлые иконки внизу
                         }
                     }
-        #endif
-        }
+#endif
+    }
 
-        private async void OnLoginClicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync("//shoplist");
-        }
-
-        private async void OnRegisterClicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync("//shoplist");
-        }
+    private async void OnBackToHomeClicked(object sender, EventArgs e)
+    {
+        await Navigation.PopToRootAsync();
     }
 }
