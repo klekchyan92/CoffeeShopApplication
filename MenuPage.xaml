@@ -146,6 +146,11 @@
                                 Stroke="Gray"
                                 StrokeShape="RoundRectangle 20"
                                 StrokeThickness="1">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer 
+    Command="{Binding Source={x:RelativeSource AncestorType={x:Type local:MenuPage}}, Path=CategoryTappedCommand}" 
+    CommandParameter="{Binding Name}" />
+                                </Border.GestureRecognizers>
                                 <Grid HorizontalOptions="Center" VerticalOptions="Center">
                                     <Grid>
                                         <!--  Иконка + текст  -->
@@ -191,7 +196,7 @@
                 <!--  Products  -->
                 <CollectionView
                     Margin="0"
-                    ItemsSource="{Binding MenuItems}"
+                    ItemsSource="{Binding FilteredMenuItems}"
                     SelectionMode="None">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout
@@ -222,6 +227,12 @@
                                             <Image 
                                                 Aspect="Fill"
                                                 Source="{Binding Image}" />
+                                            <Border.Background>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                    <GradientStop Offset="0.0" Color="#A10002" />
+                                                    <GradientStop Offset="1.0" Color="#3B0001" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
                                         </Border>
                                         <Image
                                             Margin="9"
@@ -247,7 +258,7 @@
                                                 TextColor="Black" />
                                             <Label
                                                 FontSize="14"
-                                                Text="{Binding Price, StringFormat='{}{0}$'}"
+                                                Text="{Binding Price, StringFormat='{}{0} AMD'}"
                                                 TextColor="Gray" />
                                         </VerticalStackLayout>
 

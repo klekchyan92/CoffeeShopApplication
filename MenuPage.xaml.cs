@@ -1,11 +1,44 @@
 using CoffeeShopApplication.Controls;
 using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace CoffeeShopApplication;
 
 public partial class MenuPage : ContentPage
 {
+
+    private string _selectedCategory;
+    public string SelectedCategory
+    {
+        get => _selectedCategory;
+        set
+        {
+            if (_selectedCategory != value)
+            {
+                _selectedCategory = value;
+                OnPropertyChanged();
+                ApplyCategoryFilter();
+            }
+        }
+    }
+
+    public ICommand CategoryTappedCommand => new Command<string>(category =>
+    {
+        SelectedCategory = category;
+    });
+
+    private ObservableCollection<MenuItemModel> _filteredMenuItems;
+    public ObservableCollection<MenuItemModel> FilteredMenuItems
+    {
+        get => _filteredMenuItems;
+        set
+        {
+            _filteredMenuItems = value;
+            OnPropertyChanged();
+        }
+    }
+
     public Theme Theme { get; set; }
     public string Logo { get; set; }
     public string BackgroundImage { get; set; }
@@ -50,8 +83,37 @@ public partial class MenuPage : ContentPage
                 BackgroundImage = "gotchabackground.png";
                 SetGotchaData();
                 break;
+
+            case "Coffee House":
+                Theme = new Theme
+                {
+                    BackgroundColor = Color.FromArgb("#FFFFFF"),
+                    PrimaryColor = Color.FromArgb("#D00303"),
+                    TextColor = Colors.Black
+                };
+                Logo = "coffeehouse.png";
+                BackgroundImage = "coffeehousebackground.png";
+                SetCHData();
+                SelectedCategory = Categories.First().Name;
+                ApplyCategoryFilter();
+                break;
         }
     }
+
+    private void ApplyCategoryFilter()
+    {
+        if (string.IsNullOrEmpty(SelectedCategory))
+        {
+            FilteredMenuItems = new ObservableCollection<MenuItemModel>(MenuItems);
+        }
+        else
+        {
+            FilteredMenuItems = new ObservableCollection<MenuItemModel>(
+                MenuItems.Where(item => item.Category == SelectedCategory)
+            );
+        }
+    }
+
 
     private void SetGotchaData()
     {
@@ -65,12 +127,12 @@ public partial class MenuPage : ContentPage
             new CategoryItem { Name = "Smoothie"}
         };
 
-        MenuItems = new ObservableCollection<MenuItemModel>
+        FilteredMenuItems = new ObservableCollection<MenuItemModel>
         {
-            new MenuItemModel { Name = "Cappuccino", Price = 2, Image = "gotchacoco.png" },
-            new MenuItemModel { Name = "Melon oolong ic...", Price = 2, Image = "gotchaflower.png" },
-            new MenuItemModel { Name = "Americano", Price = 2.55, Image = "gotchachocko.png" },
-            new MenuItemModel { Name = "Latte", Price = 4, Image = "gotchastraw.png" }
+            new MenuItemModel { Name = "Cappuccino", Price = 2000, Image = "gotchacoco.png" },
+            new MenuItemModel { Name = "Melon oolong ic...", Price = 2000, Image = "gotchaflower.png" },
+            new MenuItemModel { Name = "Americano", Price = 550, Image = "gotchachocko.png" },
+            new MenuItemModel { Name = "Latte", Price = 1400, Image = "gotchastraw.png" }
         };
     }
 
@@ -85,14 +147,49 @@ public partial class MenuPage : ContentPage
             new CategoryItem { Name = "Desserts"}
         };
 
-        MenuItems = new ObservableCollection<MenuItemModel>
+        FilteredMenuItems = new ObservableCollection<MenuItemModel>
         {
-            new MenuItemModel { Name = "Cappuccino", Price = 2, Image = "cappucino.png" },
-            new MenuItemModel { Name = "Espresso", Price = 2, Image = "espresso.png" },
-            new MenuItemModel { Name = "Americano", Price = 2.55, Image = "ameicano.png" },
-            new MenuItemModel { Name = "Latte", Price = 4, Image = "latte.png" }
+            new MenuItemModel { Name = "Cappuccino", Price = 2000, Image = "cappucino.png" },
+            new MenuItemModel { Name = "Espresso", Price = 2000, Image = "espresso.png" },
+            new MenuItemModel { Name = "Americano", Price = 1550, Image = "ameicano.png" },
+            new MenuItemModel { Name = "Latte", Price = 1400, Image = "latte.png" }
         };
     }
+
+    private void SetCHData()
+    {
+        Categories = new ObservableCollection<CategoryItem>
+        {
+            new CategoryItem { Name = "Ice Coffee" },
+            new CategoryItem { Name = "Tea" },
+            new CategoryItem { Name = "Lent Menu" },
+            new CategoryItem { Name = "Ice Drinks" },
+            new CategoryItem { Name = "Hot Coffee" },
+            new CategoryItem { Name = "Sweets" }
+        };
+
+        MenuItems = new ObservableCollection<MenuItemModel>
+        {
+            new MenuItemModel { Name = "Affogato Coffee", Price = 800, Image = "affogato.png", Category = "Ice Coffee" },
+            new MenuItemModel { Name = "Raf Strawberry", Price = 1000, Image = "rafstrawberry.png", Category = "Ice Coffee" },
+            new MenuItemModel { Name = "Raf", Price = 900, Image = "raf.png", Category = "Ice Coffee" },
+            new MenuItemModel { Name = "Latte", Price = 900, Image = "lattech.png", Category = "Ice Coffee" },
+            new MenuItemModel { Name = "Spanish Latte", Price = 800, Image = "lattech.png", Category = "Ice Coffee" },
+
+            new MenuItemModel { Name = "Black Tea", Price = 400, Image = "blacktea.png", Category = "Tea" },
+            new MenuItemModel { Name = "Winter Punch Tea", Price = 650, Image = "winterpunch.png", Category = "Tea" },
+            new MenuItemModel { Name = "Tea Strawberry", Price = 650, Image = "teastrawberry.png", Category = "Tea" },
+            new MenuItemModel { Name = "Pomegranate Tea", Price = 650, Image = "pomegranate.png", Category = "Tea" },
+            new MenuItemModel { Name = "Imuno Tea", Price = 650, Image = "imunotea.png", Category = "Tea" },
+            new MenuItemModel { Name = "Raspberry Tea", Price = 650, Image = "raspberry.png", Category = "Tea" },
+            new MenuItemModel { Name = "Ice Tea Cosmo", Price = 450, Image = "cosmo.png", Category = "Ice Drinks" },
+            new MenuItemModel { Name = "Citrus Tea", Price = 650, Image = "citrus.png", Category = "Ice Drinks" },
+
+            new MenuItemModel { Name = "Flat White", Price = 900, Image = "flatwhite.png", Category = "Ice Coffee" }
+        };
+
+    }
+
 
     protected override void OnAppearing()
     {

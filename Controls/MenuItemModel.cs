@@ -26,6 +26,20 @@ namespace CoffeeShopApplication.Controls
             }
         }
 
+        private string _category;
+        public string Category
+        {
+            get => _category;
+            set
+            {
+                if (_category != value)
+                {
+                    _category = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public double Price
         {
             get => _price;

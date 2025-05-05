@@ -115,7 +115,11 @@
                             HeightRequest="20"
                             Source="arrow.png"
                             VerticalOptions="Center"
-                            WidthRequest="20" />
+                            WidthRequest="20">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnArrowTapped" CommandParameter="Coffee House" />
+                            </Image.GestureRecognizers>
+                        </Image>
 
                         <StackLayout
                             Grid.Row="1"
