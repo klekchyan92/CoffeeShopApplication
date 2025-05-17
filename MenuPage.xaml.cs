@@ -91,7 +91,7 @@ public partial class MenuPage : ContentPage
                     PrimaryColor = Color.FromArgb("#D00303"),
                     TextColor = Colors.Black
                 };
-                Logo = "coffeehouse.png";
+                Logo = "coffehouse.png";
                 BackgroundImage = "coffeehousebackground.png";
                 SetCHData();
                 SelectedCategory = Categories.First().Name;
@@ -102,6 +102,9 @@ public partial class MenuPage : ContentPage
 
     private void ApplyCategoryFilter()
     {
+        if (CafeName != "Coffee House")
+            return;
+
         if (string.IsNullOrEmpty(SelectedCategory))
         {
             FilteredMenuItems = new ObservableCollection<MenuItemModel>(MenuItems);

@@ -179,6 +179,9 @@
                     WidthRequest="18"
                     Source="logout.png"
                     VerticalOptions="Center" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLogoutClicked" />
+                    </Image.GestureRecognizers>
                 </Image>
 
             </HorizontalStackLayout>

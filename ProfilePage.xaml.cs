@@ -46,4 +46,8 @@ public partial class ProfilePage : ContentPage, INotifyPropertyChanged
         // Open language selection
     }
 
+    private void OnLogoutClicked(object sender, TappedEventArgs e)
+    {
+        App.Current.MainPage = new NavigationPage(new MainPage());
+    }
 }

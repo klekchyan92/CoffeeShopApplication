@@ -50,7 +50,8 @@
                         <Entry Placeholder="Enter your name"
                                BackgroundColor="Transparent"
                                TextColor="Black"
-                               Margin="10,0"/>
+                               Margin="10,0"
+                               Text="{Binding Name}"/>
                     </Border>
                 </StackLayout>
 
@@ -66,7 +67,8 @@
                                Keyboard="Telephone"
                                BackgroundColor="Transparent"
                                TextColor="Black"
-                               Margin="10,0"/>
+                               Margin="10,0"
+                               Text="{Binding Phone}"/>
                     </Border>
                 </StackLayout>
 

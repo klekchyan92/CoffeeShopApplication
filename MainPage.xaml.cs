@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Controls.PlatformConfiguration;
+using System.ComponentModel;
 #if ANDROID
 using Android.Views;
 using AndroidX.Core.View;
@@ -6,11 +7,42 @@ using AndroidX.Core.View;
 
 namespace CoffeeShopApplication
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : ContentPage, INotifyPropertyChanged
     {
+        private string _name;
+
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                if (_name != value)
+                {
+                    _name = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _phone;
+
+        public string Phone
+        {
+            get => _phone;
+            set
+            {
+                if (_phone != value)
+                {
+                    _phone = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = this;
         }
 
         protected override void OnAppearing()
@@ -21,7 +53,7 @@ namespace CoffeeShopApplication
 
         private void SetStatusBarAndNavigationBarColors()
         {
-        #if ANDROID
+#if ANDROID
             
                     var window = Platform.CurrentActivity!.Window;
 
@@ -45,17 +77,33 @@ namespace CoffeeShopApplication
                             controller.AppearanceLightNavigationBars = false; // Светлые иконки внизу
                         }
                     }
-        #endif
+#endif
         }
 
         private async void OnLoginClicked(object sender, EventArgs e)
         {
+            // Ensure user is authenticated here (if not already handled)
+            // e.g., if (!AuthService.Login(username, password)) return;
+
+            // Replace the MainPage with AppShell if it's not already initialized
+            if (App.Current.MainPage is not AppShell)
+            {
+                App.Current.MainPage = new AppShell();
+            }
+
+            if (Name != "Yeva" || Phone != "098806222")
+                return;
+
+            // Navigate to the Shop List page (home tab)
             await Shell.Current.GoToAsync("//shoplist");
         }
+
 
         private async void OnRegisterClicked(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("//shoplist");
         }
+
+
     }
 }
